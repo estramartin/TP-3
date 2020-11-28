@@ -28,7 +28,7 @@ namespace Agencia_Autos
        public Alquiler(Persona cliente) {
 
 
-            this.cliente = new Cliente(((Cliente)cliente).Nombre, ((Cliente)cliente).Dni, ((Cliente)cliente).Cuit, ((Cliente)cliente).Direccion, ((Cliente)cliente).Telefono, ((Cliente)cliente).Fechanac, ((Cliente)cliente).Estadocivil, ((Cliente)cliente).Nacionalidad, ((Cliente)cliente).Carnet);
+            this.cliente = new Cliente(((Cliente)cliente).Nombre, ((Cliente)cliente).Dni, ((Cliente)cliente).Cuit, ((Cliente)cliente).Direccion, ((Cliente)cliente).Telefono, ((Cliente)cliente).Fechanac, ((Cliente)cliente).Estadocivil, ((Cliente)cliente).Nacionalidad, ((Cliente)cliente).Carnet, ((Cliente)cliente).Foto);
             
             
         }

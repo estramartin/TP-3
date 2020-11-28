@@ -54,6 +54,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.gbConductor1 = new System.Windows.Forms.GroupBox();
+            this.btnImagen1 = new System.Windows.Forms.Button();
+            this.pbConductor1 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.tbCarnetAcompañante1 = new System.Windows.Forms.TextBox();
             this.dtpFechaNacAcompañante1 = new System.Windows.Forms.DateTimePicker();
@@ -73,6 +75,8 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.gbConductor2 = new System.Windows.Forms.GroupBox();
+            this.btnImagen2 = new System.Windows.Forms.Button();
+            this.pbConductor2 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tbCarnetAcompañante2 = new System.Windows.Forms.TextBox();
             this.dtpFechaNacAcompañante2 = new System.Windows.Forms.DateTimePicker();
@@ -94,10 +98,16 @@
             this.label40 = new System.Windows.Forms.Label();
             this.tbDiasDeAlquiler = new System.Windows.Forms.TextBox();
             this.gbCliente = new System.Windows.Forms.GroupBox();
+            this.pbTitular = new System.Windows.Forms.PictureBox();
+            this.btnCargarFotoTitular = new System.Windows.Forms.Button();
+            this.openFileFotos = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.gbConductor1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbConductor1)).BeginInit();
             this.gbConductor2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbConductor2)).BeginInit();
             this.gbCliente.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTitular)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -176,7 +186,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 330);
+            this.label9.Location = new System.Drawing.Point(7, 558);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(219, 13);
             this.label9.TabIndex = 8;
@@ -195,7 +205,7 @@
             // btnAlquilar
             // 
             this.btnAlquilar.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAlquilar.Location = new System.Drawing.Point(692, 771);
+            this.btnAlquilar.Location = new System.Drawing.Point(250, 890);
             this.btnAlquilar.Name = "btnAlquilar";
             this.btnAlquilar.Size = new System.Drawing.Size(75, 23);
             this.btnAlquilar.TabIndex = 10;
@@ -204,7 +214,7 @@
             // 
             // btnSalir
             // 
-            this.btnSalir.Location = new System.Drawing.Point(377, 374);
+            this.btnSalir.Location = new System.Drawing.Point(26, 890);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 11;
@@ -275,7 +285,7 @@
             "1",
             "2",
             "3"});
-            this.comboBox1.Location = new System.Drawing.Point(235, 327);
+            this.comboBox1.Location = new System.Drawing.Point(235, 555);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 22;
@@ -318,6 +328,8 @@
             // 
             // gbConductor1
             // 
+            this.gbConductor1.Controls.Add(this.btnImagen1);
+            this.gbConductor1.Controls.Add(this.pbConductor1);
             this.gbConductor1.Controls.Add(this.label13);
             this.gbConductor1.Controls.Add(this.tbCarnetAcompañante1);
             this.gbConductor1.Controls.Add(this.dtpFechaNacAcompañante1);
@@ -336,12 +348,31 @@
             this.gbConductor1.Controls.Add(this.label23);
             this.gbConductor1.Controls.Add(this.label24);
             this.gbConductor1.Controls.Add(this.label25);
-            this.gbConductor1.Location = new System.Drawing.Point(57, 419);
+            this.gbConductor1.Location = new System.Drawing.Point(423, 432);
             this.gbConductor1.Name = "gbConductor1";
-            this.gbConductor1.Size = new System.Drawing.Size(279, 343);
+            this.gbConductor1.Size = new System.Drawing.Size(279, 501);
             this.gbConductor1.TabIndex = 29;
             this.gbConductor1.TabStop = false;
             this.gbConductor1.Text = "Conductor 1:";
+            // 
+            // btnImagen1
+            // 
+            this.btnImagen1.Location = new System.Drawing.Point(56, 323);
+            this.btnImagen1.Name = "btnImagen1";
+            this.btnImagen1.Size = new System.Drawing.Size(140, 23);
+            this.btnImagen1.TabIndex = 44;
+            this.btnImagen1.Text = "Cargar Foto";
+            this.btnImagen1.UseVisualStyleBackColor = true;
+            this.btnImagen1.Click += new System.EventHandler(this.btnImagen1_Click);
+            // 
+            // pbConductor1
+            // 
+            this.pbConductor1.Location = new System.Drawing.Point(39, 352);
+            this.pbConductor1.Name = "pbConductor1";
+            this.pbConductor1.Size = new System.Drawing.Size(180, 129);
+            this.pbConductor1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbConductor1.TabIndex = 43;
+            this.pbConductor1.TabStop = false;
             // 
             // label13
             // 
@@ -489,6 +520,8 @@
             // 
             // gbConductor2
             // 
+            this.gbConductor2.Controls.Add(this.btnImagen2);
+            this.gbConductor2.Controls.Add(this.pbConductor2);
             this.gbConductor2.Controls.Add(this.label15);
             this.gbConductor2.Controls.Add(this.tbCarnetAcompañante2);
             this.gbConductor2.Controls.Add(this.dtpFechaNacAcompañante2);
@@ -507,12 +540,31 @@
             this.gbConductor2.Controls.Add(this.label28);
             this.gbConductor2.Controls.Add(this.label29);
             this.gbConductor2.Controls.Add(this.label30);
-            this.gbConductor2.Location = new System.Drawing.Point(387, 419);
+            this.gbConductor2.Location = new System.Drawing.Point(721, 432);
             this.gbConductor2.Name = "gbConductor2";
-            this.gbConductor2.Size = new System.Drawing.Size(300, 343);
+            this.gbConductor2.Size = new System.Drawing.Size(300, 501);
             this.gbConductor2.TabIndex = 30;
             this.gbConductor2.TabStop = false;
             this.gbConductor2.Text = "Conductor 2:";
+            // 
+            // btnImagen2
+            // 
+            this.btnImagen2.Location = new System.Drawing.Point(76, 323);
+            this.btnImagen2.Name = "btnImagen2";
+            this.btnImagen2.Size = new System.Drawing.Size(140, 23);
+            this.btnImagen2.TabIndex = 45;
+            this.btnImagen2.Text = "Cargar Foto";
+            this.btnImagen2.UseVisualStyleBackColor = true;
+            this.btnImagen2.Click += new System.EventHandler(this.btnImagen2_Click);
+            // 
+            // pbConductor2
+            // 
+            this.pbConductor2.Location = new System.Drawing.Point(59, 352);
+            this.pbConductor2.Name = "pbConductor2";
+            this.pbConductor2.Size = new System.Drawing.Size(180, 129);
+            this.pbConductor2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbConductor2.TabIndex = 44;
+            this.pbConductor2.TabStop = false;
             // 
             // label15
             // 
@@ -676,6 +728,8 @@
             // 
             // gbCliente
             // 
+            this.gbCliente.Controls.Add(this.pbTitular);
+            this.gbCliente.Controls.Add(this.btnCargarFotoTitular);
             this.gbCliente.Controls.Add(this.label40);
             this.gbCliente.Controls.Add(this.tbDiasDeAlquiler);
             this.gbCliente.Controls.Add(this.label12);
@@ -700,16 +754,39 @@
             this.gbCliente.Controls.Add(this.label1);
             this.gbCliente.Location = new System.Drawing.Point(5, 37);
             this.gbCliente.Name = "gbCliente";
-            this.gbCliente.Size = new System.Drawing.Size(366, 361);
+            this.gbCliente.Size = new System.Drawing.Size(366, 598);
             this.gbCliente.TabIndex = 33;
             this.gbCliente.TabStop = false;
             this.gbCliente.Text = "Datos cliente";
+            // 
+            // pbTitular
+            // 
+            this.pbTitular.Location = new System.Drawing.Point(152, 337);
+            this.pbTitular.Name = "pbTitular";
+            this.pbTitular.Size = new System.Drawing.Size(180, 176);
+            this.pbTitular.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTitular.TabIndex = 45;
+            this.pbTitular.TabStop = false;
+            // 
+            // btnCargarFotoTitular
+            // 
+            this.btnCargarFotoTitular.Location = new System.Drawing.Point(0, 337);
+            this.btnCargarFotoTitular.Name = "btnCargarFotoTitular";
+            this.btnCargarFotoTitular.Size = new System.Drawing.Size(121, 23);
+            this.btnCargarFotoTitular.TabIndex = 45;
+            this.btnCargarFotoTitular.Text = "Cargar Foto";
+            this.btnCargarFotoTitular.UseVisualStyleBackColor = true;
+            this.btnCargarFotoTitular.Click += new System.EventHandler(this.btnCargarFotoTitular_Click);
+            // 
+            // openFileFotos
+            // 
+            this.openFileFotos.FileName = "openFileDialog1";
             // 
             // GenerarAlquiler
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 806);
+            this.ClientSize = new System.Drawing.Size(1112, 679);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.gbConductor2);
             this.Controls.Add(this.gbConductor1);
@@ -725,10 +802,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.gbConductor1.ResumeLayout(false);
             this.gbConductor1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbConductor1)).EndInit();
             this.gbConductor2.ResumeLayout(false);
             this.gbConductor2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbConductor2)).EndInit();
             this.gbCliente.ResumeLayout(false);
             this.gbCliente.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTitular)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -801,5 +881,12 @@
         public System.Windows.Forms.Label label40;
         public System.Windows.Forms.TextBox tbDiasDeAlquiler;
         public System.Windows.Forms.GroupBox gbCliente;
+        private System.Windows.Forms.Button btnImagen1;
+        private System.Windows.Forms.PictureBox pbConductor1;
+        private System.Windows.Forms.Button btnImagen2;
+        private System.Windows.Forms.PictureBox pbConductor2;
+        private System.Windows.Forms.OpenFileDialog openFileFotos;
+        private System.Windows.Forms.PictureBox pbTitular;
+        private System.Windows.Forms.Button btnCargarFotoTitular;
     }
 }

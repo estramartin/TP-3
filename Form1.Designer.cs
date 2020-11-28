@@ -58,6 +58,8 @@
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.printComprobante = new System.Drawing.Printing.PrintDocument();
+            this.printPermisos = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -327,6 +329,14 @@
             this.label2.TabIndex = 24;
             this.label2.Text = "label2";
             // 
+            // printComprobante
+            // 
+            this.printComprobante.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printComprobante_PrintPage);
+            // 
+            // printPermisos
+            // 
+            this.printPermisos.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPermisos_PrintPage);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -397,6 +407,8 @@
         private System.Windows.Forms.PictureBox pblogo;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label2;
+        private System.Drawing.Printing.PrintDocument printComprobante;
+        private System.Drawing.Printing.PrintDocument printPermisos;
     }
 }
 

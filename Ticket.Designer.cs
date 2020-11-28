@@ -39,6 +39,7 @@
             this.printPreviewControl1.Name = "printPreviewControl1";
             this.printPreviewControl1.Size = new System.Drawing.Size(738, 439);
             this.printPreviewControl1.TabIndex = 0;
+            this.printPreviewControl1.Click += new System.EventHandler(this.printPreviewControl1_Click);
             // 
             // btnAceptar
             // 

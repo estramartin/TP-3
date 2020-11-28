@@ -12,9 +12,9 @@ namespace Agencia_Autos
 
              
         private string carnet;
-        
+        private string foto;
 
-        public Cliente(string nombreCompleto, int dni, long cuil, string dir, int tel, DateTime fechanac, string estadoCiv, string nac, string carnet)
+        public Cliente(string nombreCompleto, int dni, long cuil, string dir, int tel, DateTime fechanac, string estadoCiv, string nac, string carnet, string foto)
         {
 
              Nombre = nombreCompleto;
@@ -26,7 +26,7 @@ namespace Agencia_Autos
             Estadocivil = estadoCiv;
             Nacionalidad = nac;
             this.Carnet = carnet;
-
+            this.foto = foto;
 
 
 
@@ -45,7 +45,11 @@ namespace Agencia_Autos
 
         }
 
-
+        public string Foto
+        {
+            get { return foto; }
+            
+        }
 
 
 
