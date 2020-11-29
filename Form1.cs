@@ -656,79 +656,91 @@ namespace Agencia_Autos
                 }
                 else
                 {
-
-                    string ruta = ConChof[DGV1.CurrentRow.Index].Imagen;
-
-                    GenerarAlquiler VentanaAlquilar = new GenerarAlquiler();
-                    VentanaAlquilar.label9.Hide();
-
-                    if (ConChof[DGV1.CurrentRow.Index].Disponible == false)
+                    try
                     {
+                        string ruta = ConChof[DGV1.CurrentRow.Index].Imagen;
 
-                        VentanaAlquilar.gbCliente.Enabled = false;
-                        VentanaAlquilar.btnAlquilar.Enabled = false;
+                        GenerarAlquiler VentanaAlquilar = new GenerarAlquiler();
+                        VentanaAlquilar.label9.Hide();
+
+                        if (ConChof[DGV1.CurrentRow.Index].Disponible == false)
+                        {
+
+                            VentanaAlquilar.gbCliente.Enabled = false;
+                            VentanaAlquilar.btnAlquilar.Enabled = false;
+
+                        }
+                        else
+                        {
+
+                            VentanaAlquilar.gbCliente.Enabled = true;
+                            VentanaAlquilar.btnAlquilar.Enabled = true;
+
+                        }
+                        VentanaAlquilar.label11.Text = ((VehículoConChofer)(ConChof[DGV1.CurrentRow.Index])).UnChofer.DatosPersonales();
+                        VentanaAlquilar.comboBox1.Hide();
+
+                        VentanaAlquilar.pictureBox1.Image = Image.FromFile(ruta);
+
+                        if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
+                        {
+                            string nombre = VentanaAlquilar.tbNombreCliente.Text;
+                            int Dni = Convert.ToInt32(VentanaAlquilar.tbDniCliente.Text);
+                            long cuil = Convert.ToInt64(VentanaAlquilar.tbCuilCliente.Text);
+                            string dir = VentanaAlquilar.tbDireccionCliente.Text;
+                            int tel = Convert.ToInt32(VentanaAlquilar.tbTelefonoCliente.Text);
+                            DateTime fechanac = VentanaAlquilar.dtpFechaNac.Value;
+                            string estadocivil = VentanaAlquilar.tbEstadoCivilCliente.Text;
+                            string nacionalidad = VentanaAlquilar.tbNacionalidadCliente.Text;
+                            string carnet = (VentanaAlquilar.tbCarnetCliente.Text);
+                            int diasDeAlquiler = Convert.ToInt32(VentanaAlquilar.tbDiasDeAlquiler.Text);
+                            string foto = VentanaAlquilar.pathTitular;
+
+                            persona = new Cliente(nombre, Dni, cuil, dir, tel, fechanac, estadocivil, nacionalidad, carnet, foto);
+
+                            Alquiler alquiler = new Alquiler(persona);
+                            alquiler.DiasDeAlquiler = diasDeAlquiler;
+                            alquiler.Auto = ConChof[DGV1.CurrentRow.Index];
+                            alquiler.Auto.PrecioAlquiladoEnUDC = alquiler.Auto.UnidadDeCobro;
+                            alquiler.PrecioAlquilado = administracion.Pesos;
+                            alquiler.InicioAlquiler = DateTime.Now;
+                            alquiler.Auto.Disponible = false;
+                            administracion.CargarAlquiler(alquiler);
+                            Comprobante = alquiler;
+                            ActualizarListboxs();
+
+
+                        }
 
                     }
-                    else
-                    {
-
-                        VentanaAlquilar.gbCliente.Enabled = true;
-                        VentanaAlquilar.btnAlquilar.Enabled = true;
-
-                    }
-                    VentanaAlquilar.label11.Text = ((VehículoConChofer)(ConChof[DGV1.CurrentRow.Index])).UnChofer.DatosPersonales();
-                    VentanaAlquilar.comboBox1.Hide();
-
-                    VentanaAlquilar.pictureBox1.Image = Image.FromFile(ruta);
-
-                    if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
-                    {
-                        string nombre = VentanaAlquilar.tbNombreCliente.Text;
-                        int Dni = Convert.ToInt32(VentanaAlquilar.tbDniCliente.Text);
-                        long cuil = Convert.ToInt64(VentanaAlquilar.tbCuilCliente.Text);
-                        string dir = VentanaAlquilar.tbDireccionCliente.Text;
-                        int tel = Convert.ToInt32(VentanaAlquilar.tbTelefonoCliente.Text);
-                        DateTime fechanac = VentanaAlquilar.dtpFechaNac.Value;
-                        string estadocivil = VentanaAlquilar.tbEstadoCivilCliente.Text;
-                        string nacionalidad = VentanaAlquilar.tbNacionalidadCliente.Text;
-                        string carnet = (VentanaAlquilar.tbCarnetCliente.Text);
-                        int diasDeAlquiler = Convert.ToInt32(VentanaAlquilar.tbDiasDeAlquiler.Text);
-                        string foto = VentanaAlquilar.pathTitular;
-
-                        persona = new Cliente(nombre, Dni, cuil, dir, tel, fechanac, estadocivil, nacionalidad, carnet, foto);
-
-                        Alquiler alquiler = new Alquiler(persona);
-                        alquiler.DiasDeAlquiler = diasDeAlquiler;
-                        alquiler.Auto = ConChof[DGV1.CurrentRow.Index];
-                        alquiler.Auto.PrecioAlquiladoEnUDC = alquiler.Auto.UnidadDeCobro;
-                        alquiler.PrecioAlquilado = administracion.Pesos;
-                        alquiler.InicioAlquiler = DateTime.Now;
-                        alquiler.Auto.Disponible = false;
-                        administracion.CargarAlquiler(alquiler);
-                        Comprobante = alquiler;
-                        ActualizarListboxs();
-
-
-                    }
-
-
+                    catch (FormatException) { }
+                    catch (ArgumentOutOfRangeException) { }
+                    catch (ApplicationException er) { MessageBox.Show(er.Message); }
                 }
 
-                /*
-                comprobante.printPreviewControl1.Document = printComprobante;
-                comprobante.printPreviewControl1.Rows = 1;
-                comprobante.printPreviewControl1.Columns = 1;
 
 
-                if (comprobante.ShowDialog() == DialogResult.OK)
+
+                if (Comprobante == null)
+                {
+                    throw new ApplicationException("Cancelado por el usuario  ");
+                }
+                else
                 {
 
-                    printComprobante.Print();
+                    comprobante.printPreviewControl1.Document = printComprobante;
+                    comprobante.printPreviewControl1.Rows = 1;
+                    comprobante.printPreviewControl1.Columns = 1;
 
 
+                    if (comprobante.ShowDialog() == DialogResult.OK)
+                    {
+
+                        printComprobante.Print();
+
+
+                    }
                 }
-
-                */
                 /* comprobante.printPreviewControl1.Document = printPermisos;
                  comprobante.printPreviewControl1.Rows = 4;
                  comprobante.printPreviewControl1.Columns = 4;
@@ -741,7 +753,7 @@ namespace Agencia_Autos
                  }*/
             }
             catch (ApplicationException er) { MessageBox.Show(er.Message); }
-            catch (NullReferenceException) { }
+            catch (NullReferenceException er) { MessageBox.Show(er.Message); }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1065,7 +1077,8 @@ namespace Agencia_Autos
 
         private void printComprobante_PrintPage(object sender, PrintPageEventArgs e)
         {//imprime comprobante
-            
+            try
+            {
                 PaperSize paperSize = new PaperSize("My Envelope", 990, 500);
                 paperSize.RawKind = (int)PaperKind.Custom;
                 Image logo = Image.FromFile(administracion.GetEmpresa().Logo);
@@ -1077,8 +1090,9 @@ namespace Agencia_Autos
                 e.Graphics.DrawString("Patente: " + Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
                 e.Graphics.DrawString("Kms: " + Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
 
-            
-            
+            }
+            catch (NullReferenceException er) { MessageBox.Show(er.Message); }
+            catch (ArgumentNullException er) { MessageBox.Show(er.Message); }
 
         }
 
