@@ -12,7 +12,7 @@ namespace Agencia_Autos
         protected string nombre;
         //protected bool sexo;
         protected int dni;
-        protected long cuit;
+        private long cuit;
         protected string direccion;
         protected int telefono;
         protected DateTime fechanac;
@@ -30,13 +30,13 @@ namespace Agencia_Autos
 
             get { return cuit; }
             set {
-               
+                this.cuit = value;
                 int sumatorianumeros =0;
 
                 string cuit = this.cuit.ToString();
 
-                string[]CUIT = new string[10];
-                int[] CONTROLCUIT = new int[9];                       
+                string[]CUIT = new string[11];
+                int[] CONTROLCUIT = new int[10];                       
 
                 for (int i = 0; i < CUIT.Length; i++)
                 {
@@ -65,6 +65,16 @@ namespace Agencia_Autos
                 int verificador = 11 - ultimoNumero;
 
 
+                if (Convert.ToInt32(CUIT[10]) == verificador)
+                {
+
+                    this.cuit = value;
+
+                }
+                else { throw new ApplicationException("CUIT INVALIDO"); }
+
+
+
             }
            
         
@@ -80,8 +90,7 @@ namespace Agencia_Autos
         public DateTime Fechanac { get => fechanac; set => fechanac = value; }
         public string Estadocivil { get => estadocivil; set => estadocivil = value; }
         public string Nacionalidad { get => nacionalidad; set => nacionalidad = value; }
-        
-
+       //public long Cuit { get => cuit; set => cuit = value; }
 
         public abstract string DatosPersonales();
 

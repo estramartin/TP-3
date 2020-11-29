@@ -78,5 +78,10 @@ namespace Agencia_Autos
         {
             this.Close();
         }
+
+        private void Agregar_Vehiculo_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

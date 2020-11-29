@@ -440,6 +440,7 @@
             this.Controls.Add(this.btnCarcarImagenAuto);
             this.Name = "Agregar_Vehiculo";
             this.Text = "Agregar_Vehiculo";
+            this.Load += new System.EventHandler(this.Agregar_Vehiculo_Load);
             this.gbDatosVehiculos.ResumeLayout(false);
             this.gbDatosVehiculos.PerformLayout();
             this.gbDatosChofer.ResumeLayout(false);
