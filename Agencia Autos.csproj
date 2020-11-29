@@ -104,6 +104,12 @@
     <Compile Include="IngresoUsuario.Designer.cs">
       <DependentUpon>IngresoUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mensajes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Mensajes.Designer.cs">
+      <DependentUpon>Mensajes.cs</DependentUpon>
+    </Compile>
     <Compile Include="MisExcepciones.cs" />
     <Compile Include="ModificarValoresDeAlquiler.cs">
       <SubType>Form</SubType>
@@ -157,6 +163,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="IngresoUsuario.resx">
       <DependentUpon>IngresoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Mensajes.resx">
+      <DependentUpon>Mensajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ModificarValoresDeAlquiler.resx">
       <DependentUpon>ModificarValoresDeAlquiler.cs</DependentUpon>
@@ -221,10 +230,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
-    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="bin\Debug\Imagenes Autos\206.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\destruccionAuto.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

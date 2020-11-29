@@ -60,6 +60,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.printComprobante = new System.Drawing.Printing.PrintDocument();
             this.printPermisos = new System.Drawing.Printing.PrintDocument();
+            this.eliminarVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -91,7 +92,8 @@
             this.agregarToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.conChoferToolStripMenuItem,
             this.sinChoferToolStripMenuItem,
-            this.modificarDatosDeVehiculoToolStripMenuItem});
+            this.modificarDatosDeVehiculoToolStripMenuItem,
+            this.eliminarVehiculoToolStripMenuItem});
             this.agregarToolStripMenuItem.Name = "agregarToolStripMenuItem";
             this.agregarToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.agregarToolStripMenuItem.Text = "Agregar Vehículo";
@@ -337,6 +339,13 @@
             // 
             this.printPermisos.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPermisos_PrintPage);
             // 
+            // eliminarVehiculoToolStripMenuItem
+            // 
+            this.eliminarVehiculoToolStripMenuItem.Name = "eliminarVehiculoToolStripMenuItem";
+            this.eliminarVehiculoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.eliminarVehiculoToolStripMenuItem.Text = "Eliminar Vehiculo";
+            this.eliminarVehiculoToolStripMenuItem.Click += new System.EventHandler(this.eliminarVehiculoToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -409,6 +418,7 @@
         private System.Windows.Forms.Label label2;
         private System.Drawing.Printing.PrintDocument printComprobante;
         private System.Drawing.Printing.PrintDocument printPermisos;
+        private System.Windows.Forms.ToolStripMenuItem eliminarVehiculoToolStripMenuItem;
     }
 }
 

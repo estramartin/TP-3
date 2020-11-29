@@ -550,7 +550,7 @@ namespace Agencia_Autos
         {
 
             Ticket comprobante = new Ticket();
-            
+
             try
             {
                 if (cbChofer.SelectedIndex == 1)
@@ -751,21 +751,21 @@ namespace Agencia_Autos
 
                 }
 
-                
-               comprobante.printPreviewControl1.Document = printComprobante;
-               comprobante.printPreviewControl1.Rows = 1;
-               comprobante.printPreviewControl1.Columns = 1;
+                /*
+                comprobante.printPreviewControl1.Document = printComprobante;
+                comprobante.printPreviewControl1.Rows = 1;
+                comprobante.printPreviewControl1.Columns = 1;
 
 
-               if (comprobante.ShowDialog() == DialogResult.OK)
-               {
+                if (comprobante.ShowDialog() == DialogResult.OK)
+                {
 
-                 printComprobante.Print();
+                    printComprobante.Print();
 
 
-               }                 
-                
-                
+                }
+
+                */
                 /* comprobante.printPreviewControl1.Document = printPermisos;
                  comprobante.printPreviewControl1.Rows = 4;
                  comprobante.printPreviewControl1.Columns = 4;
@@ -778,6 +778,7 @@ namespace Agencia_Autos
                  }*/
             }
             catch (ApplicationException er) { MessageBox.Show(er.Message); }
+            catch (NullReferenceException) { }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -804,6 +805,7 @@ namespace Agencia_Autos
 
                 e.Graphics.DrawImage(logo, new PointF(20, 100));
                 e.Graphics.DrawString(administracion.GetEmpresa().RazonSocial, new Font("MV Boli", 20, FontStyle.Bold), Brushes.Blue, new PointF(170, 100));
+                e.Graphics.DrawString(DateTime.Now.ToShortDateString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(700, 130));
                 e.Graphics.DrawString(administracion.GetEmpresa().DireccionFiscal, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 130));
                 e.Graphics.DrawString(administracion.GetEmpresa().Cuil.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 160));
                 e.Graphics.DrawString("NOMBRE: ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 300));
@@ -812,14 +814,15 @@ namespace Agencia_Autos
                 e.Graphics.DrawString(devolucion.getClinete().Cuit.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(200, 330)) ;
                 e.Graphics.DrawImage(factura, new PointF(20, 400));
                 e.Graphics.DrawString(devolucion.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 450));
-                e.Graphics.DrawString("$"+((devolucion.Auto.PrecioAlquiladoEnUDC*devolucion.PrecioAlquilado)*devolucion.DiasDeAlquiler).ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 450));
+                e.Graphics.DrawString("$"+((devolucion.Auto.PrecioAlquiladoEnUDC*devolucion.PrecioAlquilado)*devolucion.DiasDeAlquiler).ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 490));
                 e.Graphics.DrawString("RENTADO POR DIAS: "+ devolucion.DiasDeAlquiler.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 490));
-                e.Graphics.DrawString("MORA POR EXCESO DE DIAS: "+devolucion.ExcesoDias, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 530));
-                e.Graphics.DrawString("$"+devolucion.MultaXDias.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 530));
-                e.Graphics.DrawString("MORA POR EXCESO DE KMS: "+devolucion.ExcesoKms, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 570));
-                e.Graphics.DrawString("$"+devolucion.MultaxKms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 570));
-                e.Graphics.DrawString("VIATICOS CHOFER ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 610));
-                e.Graphics.DrawString("$"+devolucion.Viaticos.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 610));
+                e.Graphics.DrawString("KMs RECORRIDOS: " + devolucion.KmsRecorridos, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 530));
+                e.Graphics.DrawString("MORA POR EXCESO DE DIAS: "+devolucion.ExcesoDias, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30,570));
+                e.Graphics.DrawString("$"+devolucion.MultaXDias.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 570));
+                e.Graphics.DrawString("MORA POR EXCESO DE KMS: "+devolucion.ExcesoKms, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30,610));
+                e.Graphics.DrawString("$"+devolucion.MultaxKms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 610));
+                e.Graphics.DrawString("VIATICOS CHOFER ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(30, 650));
+                e.Graphics.DrawString("$"+devolucion.Viaticos.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(650, 650));
                 e.Graphics.DrawString("A PAGAR: ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(455, 835));
                 e.Graphics.DrawString("$"+ preciofinal, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.White, new PointF(700, 835));
                 e.Graphics.DrawString(devolucion.Auto.Patente, new Font("Code 128", 100, FontStyle.Bold), Brushes.Black, new PointF(50, 900));
@@ -932,6 +935,10 @@ namespace Agencia_Autos
             int indice = DGV1.CurrentRow.Index;
             List<Vehículo> aux;
 
+            
+
+
+
             if (cbChofer.SelectedIndex == 1)
             {
                 modificar.Size = new Size(816, 370);
@@ -959,9 +966,25 @@ namespace Agencia_Autos
                 aux = ConChof;
             }
 
-            
-           
-                modificar.pictureBox1.Image = Image.FromFile(aux[indice].Imagen);
+            if (aux[indice].Disponible == false)
+            {
+
+                modificar.gbDatosVehiculos.Enabled = false;
+                modificar.gbDatosChofer.Enabled = false;
+                modificar.btnCarcarImagenAuto.Enabled = false;
+                modificar.btnCargar.Enabled = false;
+
+            }
+            else {
+
+                modificar.gbDatosVehiculos.Enabled = true;
+                modificar.gbDatosChofer.Enabled = true;
+                modificar.btnCarcarImagenAuto.Enabled = true;
+                modificar.btnCargar.Enabled = true;
+            }
+
+
+            modificar.pictureBox1.Image = Image.FromFile(aux[indice].Imagen);
                 modificar.path = aux[indice].Imagen;
                 modificar.tbMarca.Text = aux[indice].Marca;
                 modificar.tbModelo.Text = aux[indice].Modelo;
@@ -1006,6 +1029,8 @@ namespace Agencia_Autos
 
                         ActualizarListboxs();
                     }
+
+                      
 
                 }
 
@@ -1077,19 +1102,20 @@ namespace Agencia_Autos
 
         private void printComprobante_PrintPage(object sender, PrintPageEventArgs e)
         {//imprime comprobante
+            
+                PaperSize paperSize = new PaperSize("My Envelope", 990, 500);
+                paperSize.RawKind = (int)PaperKind.Custom;
+                Image logo = Image.FromFile(administracion.GetEmpresa().Logo);
+                e.Graphics.DrawImage(logo, new PointF(300, 100));
+                e.Graphics.DrawString("Nombre: " + Comprobante.getClinete().Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
+                e.Graphics.DrawString("Direccion: " + Comprobante.getClinete().Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
+                e.Graphics.DrawString("Dni: " + Comprobante.getClinete().Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
+                e.Graphics.DrawString("Vehiculo: " + Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
+                e.Graphics.DrawString("Patente: " + Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
+                e.Graphics.DrawString("Kms: " + Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
 
-            PaperSize paperSize = new PaperSize("My Envelope", 990, 500);
-            paperSize.RawKind = (int)PaperKind.Custom;
-            Image logo = Image.FromFile(administracion.GetEmpresa().Logo);
-            e.Graphics.DrawImage(logo, new PointF(300, 100));
-            e.Graphics.DrawString("Nombre: "+ Comprobante.getClinete().Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
-            e.Graphics.DrawString("Direccion: "+Comprobante.getClinete().Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-            e.Graphics.DrawString("Dni: "+Comprobante.getClinete().Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-            e.Graphics.DrawString("Vehiculo: "+Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-            e.Graphics.DrawString("Patente: "+Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-            e.Graphics.DrawString("Kms: "+ Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-
-                      
+            
+            
 
         }
 
@@ -1195,6 +1221,57 @@ namespace Agencia_Autos
 
               }*/
 
+        }
+
+        private void eliminarVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            Mensajes mensaje = new Mensajes();
+
+
+
+
+
+            if (cbChofer.SelectedIndex == 1)
+            {
+                if (SinChof[DGV1.CurrentRow.Index].Disponible == false)
+                {
+
+                    mensaje.btnAceptar.Enabled = false;
+
+                }
+                
+
+                if (mensaje.ShowDialog() == DialogResult.OK)
+                {
+                    SinChof.RemoveAt(DGV1.CurrentCell.RowIndex);
+                    administracion.GetVehículos().Clear();
+                    administracion.GetVehículos().AddRange(SinChof);
+                }
+            }
+            else {
+                if (ConChof[DGV1.CurrentRow.Index].Disponible == false)
+                {
+
+                    mensaje.btnAceptar.Enabled = false;
+                }
+
+                if (mensaje.ShowDialog() == DialogResult.OK)
+                {
+                    ConChof.RemoveAt(DGV1.CurrentCell.RowIndex);
+                    administracion.GetVehiculosConChofer().Clear();
+                    administracion.GetVehiculosConChofer().AddRange(ConChof);
+
+                }
+
+
+
+            }
+
+
+            ActualizarListboxs();
+
+           
         }
     }
 }

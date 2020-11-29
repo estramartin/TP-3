@@ -67,6 +67,7 @@
             this.btnCargar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.gbDatosVehiculos.SuspendLayout();
             this.gbDatosChofer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -427,11 +428,23 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnEliminar.Location = new System.Drawing.Point(478, 374);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(236, 32);
+            this.btnEliminar.TabIndex = 17;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // Agregar_Vehiculo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 667);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCargar);
             this.Controls.Add(this.gbDatosChofer);
@@ -457,7 +470,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.GroupBox gbDatosVehiculos;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -491,5 +503,7 @@
         public System.Windows.Forms.TextBox tbCarnet;
         public System.Windows.Forms.TextBox tbKilometros;
         private System.Windows.Forms.Label label16;
+        public System.Windows.Forms.GroupBox gbDatosVehiculos;
+        private System.Windows.Forms.Button btnEliminar;
     }
 }

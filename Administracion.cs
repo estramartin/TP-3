@@ -110,7 +110,7 @@ namespace Agencia_Autos
            
 
                 int recorrido = kms - alquilerVigente[pos].Auto.Kms;
-            
+            alquilerVigente[pos].KmsRecorridos = recorrido;
 
             if (recorrido < 0)
             {

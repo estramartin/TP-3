@@ -71,11 +71,12 @@ namespace Agencia_Autos.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static string Code128 {
+        internal static System.Drawing.Bitmap destruccionAuto {
             get {
-                return ResourceManager.GetString("Code128", resourceCulture);
+                object obj = ResourceManager.GetObject("destruccionAuto", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

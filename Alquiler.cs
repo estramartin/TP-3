@@ -16,7 +16,7 @@ namespace Agencia_Autos
         private int diasDeAlquiler;
         private DateTime inicioAlquiler;
         private double precioAlquilado;
-
+        private int kmsRecorridos;
         private double multaxdias;
         private double multaxkms;
 
@@ -44,6 +44,12 @@ namespace Agencia_Autos
         {
             get { return inicioAlquiler; }
             set { inicioAlquiler = value; }
+        
+        }
+        public int KmsRecorridos {
+
+            get { return kmsRecorridos; }
+            set { kmsRecorridos = value; }
         
         }
 
