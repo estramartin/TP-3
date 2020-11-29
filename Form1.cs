@@ -14,6 +14,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Web;
 using System.Reflection;
 using System.Diagnostics;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace Agencia_Autos
 {
@@ -81,6 +82,8 @@ namespace Agencia_Autos
 
            SinChof.AddRange(administracion.GetVehículos());
            ConChof.AddRange(administracion.GetVehiculosConChofer());
+            
+           
         }
 
         private void agregarToolStripMenuItem_Click(object sender, EventArgs e)
@@ -296,6 +299,11 @@ namespace Agencia_Autos
         {//ver Alquileres
            
             AlquileresVigentes veralquileres = new AlquileresVigentes();
+            veralquileres.btnEliminar.Hide();
+            veralquileres.btnFinalizar.Show();
+            veralquileres.label1.Show();
+            veralquileres.textBox1.Show();
+            veralquileres.dateTimePicker1.Show();
             Ticket unTicket = new Ticket();
 
             veralquileres.dgvAlquileres.AllowUserToAddRows =false;
@@ -373,6 +381,8 @@ namespace Agencia_Autos
 
 
           public void ActualizarListboxs() {
+            //metodo que actualiza datagridview
+
             DGV1.Rows.Clear();
           
             DataGridViewRow fila;
@@ -469,54 +479,7 @@ namespace Agencia_Autos
         }
 
         private void borrarRegistrosToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Borrar registro de historico
-            VerHistorico verHistorico = new VerHistorico();
-            verHistorico.dgvHistorico.Rows.Clear();
-            verHistorico.btnBorrar.Show();
-
-            verHistorico.dgvHistorico.AllowUserToAddRows = false;
-            string[] historico;
-
-
-            foreach (Alquiler p in administracion.VerHistorico().GetHistorico()) 
-            {
-
-                try
-                {
-                    string datos = p.getClinete().Nombre + ";" + p.getClinete().Dni + ";" + p.getClinete().Telefono + ";" + Convert.ToString(p.getAcompañantes().Length) + ";" + p.Auto.Marca + ";" + p.Auto.Patente + ";" + p.Auto.Kms;
-
-                    historico = datos.Split(';');
-                    verHistorico.dgvHistorico.ColumnCount = historico.Length;
-                    verHistorico.dgvHistorico.Rows.Add(historico);
-
-                    
-                }
-                catch (Exception) { }
-
-
-            }
-
-
-            DialogResult respuesta = new DialogResult();
-            respuesta = verHistorico.ShowDialog();
-
-
-            if (respuesta == DialogResult.OK)
-            {
-
-                administracion.VerHistorico().DeleteItem(verHistorico.dgvHistorico.CurrentRow.Index, verHistorico.dgvHistorico);
-
-                foreach (Alquiler p in administracion.VerHistorico().GetHistorico())
-                {
-
-                    verHistorico.dgvHistorico.Rows.Add(p.getClinete().Nombre + " " + p.getClinete().Dni + " " + p.getClinete().Telefono + " " + Convert.ToString(p.getAcompañantes().Length) + " " + p.Auto.Marca + " " + p.Auto.Patente + " " + p.Auto.Kms);
-
-                }
-
-
-
-            }
+        {           
         }
 
         private void DGV1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -1224,7 +1187,7 @@ namespace Agencia_Autos
         }
 
         private void eliminarVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//eliminar vehiculo
 
             Mensajes mensaje = new Mensajes();
 
@@ -1272,6 +1235,186 @@ namespace Agencia_Autos
             ActualizarListboxs();
 
            
+        }
+
+        private void verGraficosToolStripMenuItem_Click(object sender, EventArgs e)
+        { }
+
+        private void conSinChoferToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Graficos de choferes
+
+            int vConChofer = 0, vSinChofer = 0;
+
+            foreach (Alquiler h in administracion.VerHistorico().GetHistorico())
+            {
+
+                if (h.Auto.Conchofer == true)
+                {
+
+                    vConChofer++;
+                   
+
+                }
+                else { vSinChofer++;  }
+
+
+            }
+
+            string[] titulos = new string[] { "Vehiculos con Chofer", "Vehiculos sin Chofer" };
+            int[] barras = new int[] { vConChofer, vSinChofer };
+
+            Graficos graficos = new Graficos();
+
+            for (int i = 0; i < titulos.Length; i++)
+            {
+
+                Series serie = graficos.chart1.Series.Add(titulos[i]);
+                serie.Label = barras[i].ToString();
+                serie.Points.Add(barras[i]);
+
+
+            }
+
+            if (graficos.ShowDialog() == DialogResult.OK) { };
+
+
+
+        }
+
+        private void asientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Grafico de asientos
+
+            List<int> asientos = new List<int>();
+            SortedDictionary<int, int> agrupados= new SortedDictionary<int, int>();
+
+            foreach (Alquiler h in administracion.VerHistorico().GetHistorico())
+            {
+                asientos.Add(h.Auto.Capacidad);
+            }
+                      
+            foreach (int a in asientos) {
+                int cont = 1;
+                foreach (int b in asientos) {
+                    
+                    if (a == b) {
+
+                        agrupados[a] = cont++;
+                    
+                    }                
+                }          
+            }
+
+            Graficos grafico = new Graficos();
+
+            foreach (KeyValuePair<int, int> a in agrupados) {
+
+                Series serie = grafico.chart1.Series.Add(a.Key.ToString());
+                serie.Points.Add(a.Value);
+                              
+            }
+
+            if (grafico.ShowDialog() == DialogResult.OK) { }
+
+        }
+
+        private void historicoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Borrar registro de historico
+            VerHistorico verHistorico = new VerHistorico();
+            verHistorico.dgvHistorico.Rows.Clear();
+            verHistorico.btnBorrar.Show();
+
+            verHistorico.dgvHistorico.AllowUserToAddRows = false;
+            string[] historico;
+
+
+            foreach (Alquiler p in administracion.VerHistorico().GetHistorico())
+            {
+
+                try
+                {
+                    string datos = p.getClinete().Nombre + ";" + p.getClinete().Dni + ";" + p.getClinete().Telefono + ";" + Convert.ToString(p.getAcompañantes().Length) + ";" + p.Auto.Marca + ";" + p.Auto.Patente + ";" + p.Auto.Kms;
+
+                    historico = datos.Split(';');
+                    verHistorico.dgvHistorico.ColumnCount = historico.Length;
+                    verHistorico.dgvHistorico.Rows.Add(historico);
+
+
+                }
+                catch (Exception) { }
+
+
+            }
+
+
+            DialogResult respuesta = new DialogResult();
+            respuesta = verHistorico.ShowDialog();
+
+
+            if (respuesta == DialogResult.OK)
+            {
+
+                administracion.VerHistorico().DeleteItem(verHistorico.dgvHistorico.CurrentRow.Index, verHistorico.dgvHistorico);
+
+                foreach (Alquiler p in administracion.VerHistorico().GetHistorico())
+                {
+
+                    verHistorico.dgvHistorico.Rows.Add(p.getClinete().Nombre + " " + p.getClinete().Dni + " " + p.getClinete().Telefono + " " + Convert.ToString(p.getAcompañantes().Length) + " " + p.Auto.Marca + " " + p.Auto.Patente + " " + p.Auto.Kms);
+
+                }
+
+
+
+            }
+        }
+
+        private void alquilerVigenteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            //Borrar Alquiler Vigente
+            AlquileresVigentes ventana = new AlquileresVigentes();
+            ventana.btnFinalizar.Hide();
+            ventana.label1.Hide();
+            ventana.textBox1.Hide();
+            ventana.dateTimePicker1.Hide();
+            ventana.btnEliminar.Show();
+            
+            string[] alquileres;
+
+            foreach (Alquiler p in administracion.GetAlquileres())
+            {
+
+
+                string datos = p.getClinete().Nombre + ";" + p.getClinete().Dni + ";" + p.getClinete().Telefono + ";" + Convert.ToString(p.DiasDeAlquiler) + ";" + p.Auto.Marca + ";" + p.Auto.Patente + ";" + p.Auto.Kms + ";" + (p.Auto.PrecioAlquiladoEnUDC * p.PrecioAlquilado * p.DiasDeAlquiler);
+
+                alquileres = datos.Split(';');
+                ventana.dgvAlquileres.ColumnCount = alquileres.Length;
+                ventana.dgvAlquileres.Rows.Add(alquileres);
+
+
+            }
+
+
+            if (ventana.ShowDialog() == DialogResult.Yes) {
+
+                administracion.GetAlquileres()[ventana.dgvAlquileres.CurrentRow.Index].Auto.Disponible = true;
+                administracion.GetAlquileres().RemoveAt(ventana.dgvAlquileres.CurrentRow.Index);
+               
+                
+                ActualizarListboxs();
+
+            
+            
+            }
+
+
+
+
+
+
+
         }
     }
 }

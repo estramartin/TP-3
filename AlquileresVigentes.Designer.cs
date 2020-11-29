@@ -42,6 +42,7 @@
             this.PATENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KMS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CACOBRAR = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlquileres)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,11 +155,22 @@
             this.CACOBRAR.HeaderText = "A COBRAR";
             this.CACOBRAR.Name = "CACOBRAR";
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.btnEliminar.Location = new System.Drawing.Point(548, 364);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(180, 35);
+            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
             // AlquileresVigentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(954, 450);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.dgvAlquileres);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
@@ -176,7 +188,6 @@
         #endregion
         public System.Windows.Forms.Button btnFinalizar;
         public System.Windows.Forms.Button btnVolver;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox textBox1;
         public System.Windows.Forms.DateTimePicker dateTimePicker1;
         public System.Windows.Forms.DataGridView dgvAlquileres;
@@ -188,5 +199,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PATENTE;
         private System.Windows.Forms.DataGridViewTextBoxColumn KMS;
         private System.Windows.Forms.DataGridViewTextBoxColumn CACOBRAR;
+        public System.Windows.Forms.Button btnEliminar;
+        public System.Windows.Forms.Label label1;
     }
 }
