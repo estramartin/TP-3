@@ -11,7 +11,7 @@ using System.Windows.Forms.VisualStyles;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Historico: IGuardar
+    class Historico
     {
 
         List<Alquiler> historico = new List<Alquiler>();
@@ -41,35 +41,7 @@ namespace Agencia_Autos
             foreach (Alquiler p in historico) {
                 lb1.Rows.Add(p.getClinete().Nombre + " " + p.getClinete().Dni + " " + p.getClinete().Telefono + " " + Convert.ToString(p.getAcompañantes().Length) + " " + p.Auto.Marca + " " + p.Auto.Patente + " " + p.Auto.Kms);
 
-            }
-           
-
-        
+            }        
         }
-
-        public void GrabarCSV(ListBox lb) {
-
-            string nombreArchivo = Application.StartupPath + "\\Archivo.txt";
-            FileStream Archivo = new FileStream(nombreArchivo, FileMode.Create, FileAccess.Write);
-            StreamWriter escritor = new StreamWriter(Archivo);
-            foreach (Alquiler a in historico) {
-
-                string linea = a.Auto.Marca + ";" + a.Auto.Modelo + ";" + a.getClinete().DatosPersonales();
-                escritor.WriteLine(linea) ;
-                lb.Items.Add(linea);
-            
-            }
-            escritor.Close();
-            Archivo.Close();
-            
-
-
-           
-        }
-
-
-
-
-
     }
 }

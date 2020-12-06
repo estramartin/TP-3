@@ -24,7 +24,7 @@ namespace Agencia_Autos
          
             this.Size = new Size(1128, 718);
             this.btnAlquilar.Location = new Point(685, 374);
-            this.btnSalir.Location = new Point(57, 374);
+            this.btnSalir.Location = new Point(377, 374);
 
 
         }
@@ -54,16 +54,17 @@ namespace Agencia_Autos
                 this.Size = new Size(1128, 718);
                 this.btnAlquilar.Location = new Point(685, 374);
                this.btnSalir.Location = new Point(377, 374);
-               
+                gbConductor1.Hide(); gbConductor2.Hide();
             }
 
             else
             {
                 this.Size = new Size(1128, 984);
-                this.btnAlquilar.Location = new Point(692, 771);
+                this.btnAlquilar.Location = new Point(250, 768);
                 this.btnSalir.Location = new Point(35, 768);
                 if (comboBox1.SelectedIndex == 1) { gbConductor1.Show(); gbConductor2.Hide(); }
                 if (comboBox1.SelectedIndex == 2) { gbConductor1.Show(); gbConductor2.Show(); }
+
                 
             }
         }

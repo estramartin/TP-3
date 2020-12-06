@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Chofer : Persona, IGuardar
+    class Chofer : Persona
     {
 
         public static int viatico = 140;
@@ -50,21 +50,7 @@ namespace Agencia_Autos
 
         }
 
-        public void GrabarCSV(ListBox lb)
-        {
-
-
-            string nombreArchivo = Application.StartupPath + "\\Archivo.txt";
-            FileStream Archivo = new FileStream(nombreArchivo, FileMode.Append, FileAccess.Write);
-            StreamWriter escritor = new StreamWriter(Archivo);
-
-            escritor.WriteLine(linea);
-
-            escritor.Close();
-            Archivo.Close();
-
-
-        }
+       
 
 
 

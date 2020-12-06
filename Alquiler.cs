@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+
 
 namespace Agencia_Autos
 {
     [Serializable]
-    class Alquiler
+    class Alquiler: IGuardar
     {
         private Persona cliente;
         private Vehículo vehiculo;
@@ -128,7 +130,20 @@ namespace Agencia_Autos
         
         }
 
+        public void GrabarCSV()
+        {
 
+            string nombrearchivo= @"D:\Martin\TSP\Laboratorio 2\TP 2\BackUP2\Agencia-Autos-master\bin\Debug\imprimible.csv";     
+            FileStream archivo = new FileStream(nombrearchivo, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter escribir = new StreamWriter(archivo);
+
+            escribir.WriteLine(cliente.Nombre);
+            escribir.WriteLine(Auto.Modelo + ";" + Auto.Patente);
+
+            escribir.Close();
+            archivo.Dispose();
+
+        }
 
 
     }

@@ -10,7 +10,7 @@ namespace Agencia_Autos
    interface IGuardar
     {
 
-      void GrabarCSV(ListBox lb);
+      void GrabarCSV();
 
 
     }

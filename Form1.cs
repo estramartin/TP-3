@@ -30,7 +30,7 @@ namespace Agencia_Autos
         List<Vehículo> ConChof = new List<Vehículo>();
         Alquiler devolucion;
         Alquiler Comprobante;
-        int contador = 0;
+
 
         public Form1()
         {
@@ -682,7 +682,8 @@ namespace Agencia_Autos
                         VentanaAlquilar.comboBox1.Hide();
 
                         VentanaAlquilar.pictureBox1.Image = Image.FromFile(ruta);
-
+                        VentanaAlquilar.tbCuilAcompañante1.Text = "20328315549";
+                        VentanaAlquilar.tbCuilAcompañante2.Text = "20328315549";
                         if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
                         {
                             string nombre = VentanaAlquilar.tbNombreCliente.Text;
@@ -732,7 +733,7 @@ namespace Agencia_Autos
                     comprobante.printPreviewControl1.Document = printComprobante;
                     comprobante.printPreviewControl1.Rows = 1;
                     comprobante.printPreviewControl1.Columns = 1;
-
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                     if (comprobante.ShowDialog() == DialogResult.OK)
                     {
@@ -743,8 +744,7 @@ namespace Agencia_Autos
                     }
                 }
                  comprobante.printPreviewControl1.Document = printPermisos;
-                 comprobante.printPreviewControl1.Rows = 2;
-                 comprobante.printPreviewControl1.Columns = 2;
+                
                  if (comprobante.ShowDialog() == DialogResult.OK)
                  {
 
@@ -1042,15 +1042,19 @@ namespace Agencia_Autos
 
         private void button2_Click(object sender, EventArgs e)
         {
+            //MOSTRAR REGUSTROS DE ARCHIVOS
             VerArchivos unArchivo = new VerArchivos();
 
             IGuardar guardar;
 
 
-             guardar = new Historico();
+            guardar = new Vehículo();
            
-            guardar.GrabarCSV(unArchivo.listBox1);
+            guardar.GrabarCSV();
 
+            guardar = new Alquiler();
+
+            guardar.GrabarCSV();
                       
 
             if (unArchivo.ShowDialog() == DialogResult.OK) { }
@@ -1083,7 +1087,11 @@ namespace Agencia_Autos
                 PaperSize paperSize = new PaperSize("My Envelope", 990, 500);
                 paperSize.RawKind = (int)PaperKind.Custom;
                 Image logo = Image.FromFile(administracion.GetEmpresa().Logo);
-                e.Graphics.DrawImage(logo, new PointF(300, 100));
+                e.Graphics.DrawImage(logo, new PointF(20, 100));
+                e.Graphics.DrawString(administracion.GetEmpresa().RazonSocial, new Font("MV Boli", 20, FontStyle.Bold), Brushes.Blue, new PointF(170, 100));
+                e.Graphics.DrawString(DateTime.Now.ToShortDateString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(700, 130));
+                e.Graphics.DrawString(administracion.GetEmpresa().DireccionFiscal, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 130));
+                e.Graphics.DrawString(administracion.GetEmpresa().Cuil.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 160));
                 e.Graphics.DrawString("Nombre: " + Comprobante.getClinete().Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
                 e.Graphics.DrawString("Direccion: " + Comprobante.getClinete().Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
                 e.Graphics.DrawString("Dni: " + Comprobante.getClinete().Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
@@ -1108,112 +1116,98 @@ namespace Agencia_Autos
 
               if (Comprobante.CantAcompañantes == 1)
               {
+                                  
+                Image Foto = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[0]).Foto);
 
-                  Image Foto = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[0]).Foto);
+                e.Graphics.DrawImage(logo, new PointF(20, 30));
+                e.Graphics.DrawImage(Foto, new PointF(600, 40));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 40));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 70));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 100));
+                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 15, FontStyle.Bold), Brushes.Black, new PointF(170, 160));
+                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 200));
+                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 240));
+                e.Graphics.DrawString(Comprobante.Auto.Modelo, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 280));
 
-                  e.Graphics.DrawImage(logo, new PointF(200, 100));
-                  e.Graphics.DrawImage(Foto, new PointF(700, 100));
-                  e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
-                  e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-                  e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-                  e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-                  e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-                  e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-                  e.Graphics.DrawString(Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
+                e.Graphics.DrawString("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(0, 310));
 
-              }
-              if (Comprobante.CantAcompañantes == 2)
-              {
-                while (contador < 1)
-                {
+            }
+            if (Comprobante.CantAcompañantes == 2)
+            {
+               
+                   Image Foto = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[0]).Foto);
 
-                    Image Foto = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[0]).Foto);
+                e.Graphics.DrawImage(logo, new PointF(20, 30));
+                e.Graphics.DrawImage(Foto, new PointF(600, 40));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 40));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 70));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 100));
+                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 15, FontStyle.Bold), Brushes.Black, new PointF(170, 160));
+                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 200));
+                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 240));
+                e.Graphics.DrawString(Comprobante.Auto.Modelo, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 280));
 
-                   
-                   
-                    e.Graphics.DrawImage(logo, new PointF(20, 100));
-                    e.Graphics.DrawImage(Foto, new PointF(500, 100));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-                    e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-                    e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-                    e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-                    e.Graphics.DrawString(Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
-                    contador++;
-
-                    e.HasMorePages = true;
-                      break;
-                                      
-
-                }
+                e.Graphics.DrawString("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(0, 310));
 
                 Image FotoConductor1 = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[1]).Foto);
-                e.Graphics.DrawImage(logo, new PointF(20, 100));
-                e.Graphics.DrawImage(FotoConductor1, new PointF(500, 100));
-                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
+                e.Graphics.DrawImage(logo, new PointF(20, 370));
+                e.Graphics.DrawImage(FotoConductor1, new PointF(600, 350));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 370));
                 e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-                e.Graphics.DrawString(Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
-              }
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 430));
+                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 15, FontStyle.Bold), Brushes.Black, new PointF(170, 490));
+                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 530));
+                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 570));
+                e.Graphics.DrawString(Comprobante.Auto.Modelo, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 610));
+
+                e.Graphics.DrawString("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(0, 640));
+
+
+            }
 
 
             if (Comprobante.CantAcompañantes == 3)
             {
-
-                while (contador < 1)
-                {
-
-                        Image Foto = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[0]).Foto);
-                    e.Graphics.DrawImage(logo, new PointF(20, 100));
-                    e.Graphics.DrawImage(Foto, new PointF(70, 100));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-                    e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-                    e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-                    e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-                    e.Graphics.DrawString(Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
-
-                    contador++;
-                    e.HasMorePages = true;
-                    break;
+                Image Foto = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[0]).Foto);
 
 
-                }
 
-                while (contador < 2)
-                {
-                    Image FotoConductor1 = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[1]).Foto);
-                    e.Graphics.DrawImage(logo, new PointF(20, 100));
-                    e.Graphics.DrawImage(FotoConductor1, new PointF(70, 100));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-                    e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-                    e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-                    e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-                    e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-                    e.Graphics.DrawString(Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
-                        contador++;
-                    e.HasMorePages = true;
-                    break;
+                e.Graphics.DrawImage(logo, new PointF(20, 30));
+                e.Graphics.DrawImage(Foto, new PointF(600, 40));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 40));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 70));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[0].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 100));
+                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 15, FontStyle.Bold), Brushes.Black, new PointF(170, 160));
+                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 200));
+                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 240));
+                e.Graphics.DrawString(Comprobante.Auto.Modelo, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 280));
 
+                e.Graphics.DrawString("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(0, 310));
 
-                }
+                Image FotoConductor1 = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[1]).Foto);
+                e.Graphics.DrawImage(logo, new PointF(20, 370));
+                e.Graphics.DrawImage(FotoConductor1, new PointF(600, 350));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 370));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[1].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 430));
+                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 15, FontStyle.Bold), Brushes.Black, new PointF(170, 490));
+                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 530));
+                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 570));
+                e.Graphics.DrawString(Comprobante.Auto.Modelo, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 610));
+
+                e.Graphics.DrawString("- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - ", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(0, 640));
+
 
                 Image FotoConductor2 = Image.FromFile(((Cliente)Comprobante.getAcompañantes()[2]).Foto);
-                e.Graphics.DrawImage(logo, new PointF(20, 100));
-                e.Graphics.DrawImage(FotoConductor2, new PointF(70, 100));
-                e.Graphics.DrawString(Comprobante.getAcompañantes()[2].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 300));
-                e.Graphics.DrawString(Comprobante.getAcompañantes()[2].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 400));
-                e.Graphics.DrawString(Comprobante.getAcompañantes()[2].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 500));
-                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 600));
-                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
-                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 800));
-                e.Graphics.DrawString(Comprobante.Auto.Kms.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
+                e.Graphics.DrawImage(logo, new PointF(20,700));
+                e.Graphics.DrawImage(FotoConductor2, new PointF(600, 690));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[2].Nombre, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 700));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[2].Direccion, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 730));
+                e.Graphics.DrawString(Comprobante.getAcompañantes()[2].Dni.ToString(), new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 760));
+                e.Graphics.DrawString("AUTIRZADO PARA CONDUCIR:", new Font("Times new Roman", 15, FontStyle.Bold), Brushes.Black, new PointF(170, 820));
+                e.Graphics.DrawString(Comprobante.Auto.Marca, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 860));
+                e.Graphics.DrawString(Comprobante.Auto.Patente, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 900));
+                e.Graphics.DrawString(Comprobante.Auto.Modelo, new Font("Times new Roman", 20, FontStyle.Bold), Brushes.Black, new PointF(170, 940));
 
 
                

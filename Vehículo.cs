@@ -10,14 +10,15 @@ using System.Windows.Forms;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Vehículo: IComparable
+    class Vehículo: IComparable, IGuardar
     {
        
         private bool disponible, conchofer;
         private string patente, marca, modelo, tipocombustible, imagen;
         private int capacidad, unidadDeCobro, kms, precioAlquiladoEnUDC;
         //public static int ordenar;
-       
+
+        public Vehículo() { }
 
         public Vehículo(bool disponible, bool chofer, string patente, string marca, string modelo, string combustible, string path, int capacidad, int unidadCobro,int kms) {
 
@@ -65,6 +66,19 @@ namespace Agencia_Autos
                 default: return -1;
             }
         */
+        
+        }
+
+        public void GrabarCSV() {
+
+            string nombrearchivo = Application.StartupPath + "\\imprimible.csv";
+            FileStream archivo = new FileStream(nombrearchivo, FileMode.OpenOrCreate, FileAccess.Write);
+            StreamWriter escribir = new StreamWriter(archivo);
+
+            escribir.WriteLine(GetVehiculo()) ;
+
+            escribir.Close();
+            archivo.Dispose();
         
         }
         
