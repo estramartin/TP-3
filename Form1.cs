@@ -1050,19 +1050,18 @@ namespace Agencia_Autos
             //MOSTRAR REGUSTROS DE ARCHIVOS
             VerArchivos unArchivo = new VerArchivos();
 
-            IGuardar guardar;
-
-
-            guardar = new Vehículo();
-           
-            guardar.GrabarCSV();
-
-            guardar = new Alquiler();
-
-            guardar.GrabarCSV();
+            administracion.GrabarCSV(unArchivo.dataGridView1);
                       
 
-            if (unArchivo.ShowDialog() == DialogResult.OK) { }
+            if (unArchivo.ShowDialog() == DialogResult.OK) {
+
+
+           
+
+
+            
+            
+            }
             
 
 
@@ -1459,6 +1458,11 @@ namespace Agencia_Autos
 
                 }
             }
+        }
+
+        private void printArchivo_PrintPage(object sender, PrintPageEventArgs e)
+        {
+
         }
     }
 }

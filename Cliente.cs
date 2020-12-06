@@ -39,7 +39,7 @@ namespace Agencia_Autos
         {
 
 
-            return Nombre + " " + Dni + " " + Cuit + " " + Direccion + " " + Telefono + " " + Fechanac + " " + Estadocivil + " " + Carnet;
+            return Nombre + ";" + Dni + ";" + Cuit + ";" + Direccion + ";" + Telefono + ";" + Fechanac.ToShortDateString() + ";" + Estadocivil + ";" + Carnet;
 
 
 

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Vehículo: IComparable, IGuardar
+    class Vehículo: IComparable
     {
        
         private bool disponible, conchofer;
@@ -69,18 +69,7 @@ namespace Agencia_Autos
         
         }
 
-        public void GrabarCSV() {
-
-            string nombrearchivo = Application.StartupPath + "\\imprimible.csv";
-            FileStream archivo = new FileStream(nombrearchivo, FileMode.OpenOrCreate, FileAccess.Write);
-            StreamWriter escribir = new StreamWriter(archivo);
-
-            escribir.WriteLine(GetVehiculo()) ;
-
-            escribir.Close();
-            archivo.Dispose();
         
-        }
         
     }
 }

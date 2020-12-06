@@ -28,15 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menúToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conChoferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sinChoferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarDatosDeVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eliminarVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.borrarRegistrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.alquilerVigenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modificarValoresDeAlquilerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.verGraficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.asientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.conSinChoferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -57,14 +63,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.printComprobante = new System.Drawing.Printing.PrintDocument();
             this.printPermisos = new System.Drawing.Printing.PrintDocument();
-            this.eliminarVehiculoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.verGraficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.asientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.conSinChoferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.historicoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.alquilerVigenteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printArchivo = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -125,6 +126,13 @@
             this.modificarDatosDeVehiculoToolStripMenuItem.Text = "Modificar Datos de Vehiculo";
             this.modificarDatosDeVehiculoToolStripMenuItem.Click += new System.EventHandler(this.modificarDatosDeVehiculoToolStripMenuItem_Click);
             // 
+            // eliminarVehiculoToolStripMenuItem
+            // 
+            this.eliminarVehiculoToolStripMenuItem.Name = "eliminarVehiculoToolStripMenuItem";
+            this.eliminarVehiculoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
+            this.eliminarVehiculoToolStripMenuItem.Text = "Eliminar Vehiculo";
+            this.eliminarVehiculoToolStripMenuItem.Click += new System.EventHandler(this.eliminarVehiculoToolStripMenuItem_Click);
+            // 
             // borrarRegistrosToolStripMenuItem
             // 
             this.borrarRegistrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,12 +143,50 @@
             this.borrarRegistrosToolStripMenuItem.Text = "Borrar Registros";
             this.borrarRegistrosToolStripMenuItem.Click += new System.EventHandler(this.borrarRegistrosToolStripMenuItem_Click);
             // 
+            // historicoToolStripMenuItem
+            // 
+            this.historicoToolStripMenuItem.Name = "historicoToolStripMenuItem";
+            this.historicoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.historicoToolStripMenuItem.Text = "Historico";
+            this.historicoToolStripMenuItem.Click += new System.EventHandler(this.historicoToolStripMenuItem_Click);
+            // 
+            // alquilerVigenteToolStripMenuItem
+            // 
+            this.alquilerVigenteToolStripMenuItem.Name = "alquilerVigenteToolStripMenuItem";
+            this.alquilerVigenteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.alquilerVigenteToolStripMenuItem.Text = "Alquiler Vigente";
+            this.alquilerVigenteToolStripMenuItem.Click += new System.EventHandler(this.alquilerVigenteToolStripMenuItem_Click);
+            // 
             // modificarValoresDeAlquilerToolStripMenuItem
             // 
             this.modificarValoresDeAlquilerToolStripMenuItem.Name = "modificarValoresDeAlquilerToolStripMenuItem";
             this.modificarValoresDeAlquilerToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.modificarValoresDeAlquilerToolStripMenuItem.Text = "Modificar valores de alquiler";
             this.modificarValoresDeAlquilerToolStripMenuItem.Click += new System.EventHandler(this.modificarValoresDeAlquilerToolStripMenuItem_Click);
+            // 
+            // verGraficosToolStripMenuItem
+            // 
+            this.verGraficosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.asientosToolStripMenuItem,
+            this.conSinChoferToolStripMenuItem});
+            this.verGraficosToolStripMenuItem.Name = "verGraficosToolStripMenuItem";
+            this.verGraficosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.verGraficosToolStripMenuItem.Text = "Ver Graficos";
+            this.verGraficosToolStripMenuItem.Click += new System.EventHandler(this.verGraficosToolStripMenuItem_Click);
+            // 
+            // asientosToolStripMenuItem
+            // 
+            this.asientosToolStripMenuItem.Name = "asientosToolStripMenuItem";
+            this.asientosToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.asientosToolStripMenuItem.Text = "Asientos";
+            this.asientosToolStripMenuItem.Click += new System.EventHandler(this.asientosToolStripMenuItem_Click);
+            // 
+            // conSinChoferToolStripMenuItem
+            // 
+            this.conSinChoferToolStripMenuItem.Name = "conSinChoferToolStripMenuItem";
+            this.conSinChoferToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.conSinChoferToolStripMenuItem.Text = "Con/Sin Chofer";
+            this.conSinChoferToolStripMenuItem.Click += new System.EventHandler(this.conSinChoferToolStripMenuItem_Click);
             // 
             // button3
             // 
@@ -187,14 +233,14 @@
             this.CPRECIO});
             this.DGV1.Location = new System.Drawing.Point(184, 110);
             this.DGV1.Name = "DGV1";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV1.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.DGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV1.Size = new System.Drawing.Size(747, 406);
             this.DGV1.TabIndex = 17;
@@ -320,23 +366,6 @@
             // 
             this.printPermisos.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPermisos_PrintPage);
             // 
-            // eliminarVehiculoToolStripMenuItem
-            // 
-            this.eliminarVehiculoToolStripMenuItem.Name = "eliminarVehiculoToolStripMenuItem";
-            this.eliminarVehiculoToolStripMenuItem.Size = new System.Drawing.Size(222, 22);
-            this.eliminarVehiculoToolStripMenuItem.Text = "Eliminar Vehiculo";
-            this.eliminarVehiculoToolStripMenuItem.Click += new System.EventHandler(this.eliminarVehiculoToolStripMenuItem_Click);
-            // 
-            // verGraficosToolStripMenuItem
-            // 
-            this.verGraficosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.asientosToolStripMenuItem,
-            this.conSinChoferToolStripMenuItem});
-            this.verGraficosToolStripMenuItem.Name = "verGraficosToolStripMenuItem";
-            this.verGraficosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.verGraficosToolStripMenuItem.Text = "Ver Graficos";
-            this.verGraficosToolStripMenuItem.Click += new System.EventHandler(this.verGraficosToolStripMenuItem_Click);
-            // 
             // pblogo
             // 
             this.pblogo.Location = new System.Drawing.Point(0, 30);
@@ -355,33 +384,9 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // asientosToolStripMenuItem
+            // printArchivo
             // 
-            this.asientosToolStripMenuItem.Name = "asientosToolStripMenuItem";
-            this.asientosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.asientosToolStripMenuItem.Text = "Asientos";
-            this.asientosToolStripMenuItem.Click += new System.EventHandler(this.asientosToolStripMenuItem_Click);
-            // 
-            // conSinChoferToolStripMenuItem
-            // 
-            this.conSinChoferToolStripMenuItem.Name = "conSinChoferToolStripMenuItem";
-            this.conSinChoferToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.conSinChoferToolStripMenuItem.Text = "Con/Sin Chofer";
-            this.conSinChoferToolStripMenuItem.Click += new System.EventHandler(this.conSinChoferToolStripMenuItem_Click);
-            // 
-            // historicoToolStripMenuItem
-            // 
-            this.historicoToolStripMenuItem.Name = "historicoToolStripMenuItem";
-            this.historicoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.historicoToolStripMenuItem.Text = "Historico";
-            this.historicoToolStripMenuItem.Click += new System.EventHandler(this.historicoToolStripMenuItem_Click);
-            // 
-            // alquilerVigenteToolStripMenuItem
-            // 
-            this.alquilerVigenteToolStripMenuItem.Name = "alquilerVigenteToolStripMenuItem";
-            this.alquilerVigenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.alquilerVigenteToolStripMenuItem.Text = "Alquiler Vigente";
-            this.alquilerVigenteToolStripMenuItem.Click += new System.EventHandler(this.alquilerVigenteToolStripMenuItem_Click);
+            this.printArchivo.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printArchivo_PrintPage);
             // 
             // Form1
             // 
@@ -459,6 +464,7 @@
         private System.Windows.Forms.ToolStripMenuItem conSinChoferToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem historicoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alquilerVigenteToolStripMenuItem;
+        private System.Drawing.Printing.PrintDocument printArchivo;
     }
 }
 

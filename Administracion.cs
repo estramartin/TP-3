@@ -5,18 +5,18 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Agencia_Autos
 {
     [Serializable]
-    class Administracion
+    class Administracion: IGuardar
     {
         private double pesos; 
         public List<Persona> Usuario = new List<Persona>();
         List<Alquiler> alquilerVigente = new List<Alquiler>();
         List<Vehículo> vehículos = new List<Vehículo>();
         List<Vehículo> vehículoConChofers = new List<Vehículo>();
-       
         Historico unHistorico;
         Empresa unaEmpresa;
         Persona unUsuario;
@@ -245,7 +245,64 @@ namespace Agencia_Autos
             return unaEmpresa;
 
         }
-      
+
+        public void GrabarCSV(DataGridView dg) {
+
+           
+
+            string ruta = Application.StartupPath + "\\imprimible.csv";
+            if (File.Exists(ruta)) { File.Delete(ruta); }
+            
+            
+            
+            FileStream archivo = new FileStream(ruta, FileMode.Create, FileAccess.Write);
+
+            StreamWriter escritor = new StreamWriter(archivo);
+
+          
+            string[] lineas;
+
+            foreach (Vehículo v in vehículos) {
+
+                string renglon = v.Marca + ";" + v.Modelo + ";" + v.Patente + ";" + v.Capacidad + ";" + v.Kms;
+                escritor.WriteLine(renglon);
+                lineas = renglon.Split(';');
+                dg.ColumnCount = lineas.Length;
+                dg.Rows.Add(lineas);
+            
+            }
+            foreach (Vehículo v in vehículoConChofers)
+            {
+
+                string renglon = v.Marca + ";" + v.Modelo + ";" + v.Patente + ";" + v.Capacidad + ";" + v.Kms;
+                escritor.WriteLine(renglon);
+                
+
+
+            }
+            foreach (Alquiler a in alquilerVigente) {
+
+
+                string renglon = "En Proceso:" + ";" + a.Auto.Marca + ";" + a.Auto.Patente + ";" + a.DiasDeAlquiler;
+                escritor.WriteLine(renglon);
+                lineas = renglon.Split(';');
+                dg.ColumnCount = lineas.Length;
+                dg.Rows.Add(lineas);
+            }
+            foreach (Alquiler u in alquilerVigente) {
+
+                string renglon = "Cliente con alquileres: " + ";" + u.getClinete().DatosPersonales();
+                escritor.WriteLine(renglon);
+                lineas = renglon.Split(';');
+                dg.ColumnCount = lineas.Length;
+                dg.Rows.Add(lineas);
+
+            }
+
+            escritor.Close();
+            archivo.Dispose();
+        
+        }
 
     }
 }
