@@ -87,7 +87,7 @@ namespace Agencia_Autos
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Va a elminar este vehiculo, está seguro?");
+          
 
 
         }

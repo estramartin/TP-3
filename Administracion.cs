@@ -16,7 +16,7 @@ namespace Agencia_Autos
         List<Alquiler> alquilerVigente = new List<Alquiler>();
         List<Vehículo> vehículos = new List<Vehículo>();
         List<Vehículo> vehículoConChofers = new List<Vehículo>();
-        List<Persona> ListChoferes = new List<Persona>();
+       
         Historico unHistorico;
         Empresa unaEmpresa;
         Persona unUsuario;
@@ -55,7 +55,7 @@ namespace Agencia_Autos
                 else
                 {
                     vehículoConChofers.Add(v);
-                    ListChoferes.Add(((VehículoConChofer)v).UnChofer);
+                   
                     
                 }
             }
@@ -245,12 +245,7 @@ namespace Agencia_Autos
             return unaEmpresa;
 
         }
-        public List<Persona> GetChoferes()
-        {
-
-            return ListChoferes;
-
-        }
+      
 
     }
 }

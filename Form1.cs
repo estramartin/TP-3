@@ -30,7 +30,8 @@ namespace Agencia_Autos
         List<Vehículo> ConChof = new List<Vehículo>();
         Alquiler devolucion;
         Alquiler Comprobante;
-
+       
+        
 
         public Form1()
         {
@@ -60,8 +61,8 @@ namespace Agencia_Autos
 
             }
 
-            ActualizarListboxs();    
-
+            ActualizarListboxs();
+           
 
         }
 
@@ -174,7 +175,7 @@ namespace Agencia_Autos
         private void conChoferToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Agregar_Vehiculo agregar = new Agregar_Vehiculo();
-
+           // agregar.btnEliminar.Hide();
             try
             {
 
@@ -533,7 +534,7 @@ namespace Agencia_Autos
                     VentanaAlquilar.tbNacionalidadCliente.Text = "Argentino";
                     VentanaAlquilar.tbCarnetCliente.Text = "234234234";
                     VentanaAlquilar.tbDiasDeAlquiler.Text = "2";
-                   
+
 
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////
                     VentanaAlquilar.btnSalir.Location = new Point(377, 374);
@@ -743,18 +744,22 @@ namespace Agencia_Autos
 
                     }
                 }
-                 comprobante.printPreviewControl1.Document = printPermisos;
-                
-                 if (comprobante.ShowDialog() == DialogResult.OK)
-                 {
+                if (cbChofer.SelectedIndex == 1)
+                {
+                    comprobante.printPreviewControl1.Document = printPermisos;
 
-                     printPermisos.Print();
+                    if (comprobante.ShowDialog() == DialogResult.OK)
+                    {
+
+                        printPermisos.Print();
 
 
-                 }
+                    }
+                }
             }
             catch (ApplicationException er) { MessageBox.Show(er.Message); }
             catch (NullReferenceException er) { MessageBox.Show(er.Message); }
+        
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1220,6 +1225,7 @@ namespace Agencia_Autos
         private void eliminarVehiculoToolStripMenuItem_Click(object sender, EventArgs e)
         {//eliminar vehiculo
 
+            
             Mensajes mensaje = new Mensajes();
 
 
@@ -1341,7 +1347,8 @@ namespace Agencia_Autos
 
             foreach (KeyValuePair<int, int> a in agrupados) {
 
-                Series serie = grafico.chart1.Series.Add(a.Key.ToString());
+                Series serie = grafico.chart1.Series.Add("Butacas: "+ a.Key.ToString());
+                serie.Label = a.Value.ToString();
                 serie.Points.Add(a.Value);
                               
             }
@@ -1380,24 +1387,24 @@ namespace Agencia_Autos
             }
 
 
-            DialogResult respuesta = new DialogResult();
-            respuesta = verHistorico.ShowDialog();
+           
 
 
-            if (respuesta == DialogResult.OK)
+          while (verHistorico.ShowDialog() == DialogResult.OK)
             {
 
                 administracion.VerHistorico().DeleteItem(verHistorico.dgvHistorico.CurrentRow.Index, verHistorico.dgvHistorico);
-
+                verHistorico.dgvHistorico.Rows.Clear();
                 foreach (Alquiler p in administracion.VerHistorico().GetHistorico())
                 {
 
-                    verHistorico.dgvHistorico.Rows.Add(p.getClinete().Nombre + " " + p.getClinete().Dni + " " + p.getClinete().Telefono + " " + Convert.ToString(p.getAcompañantes().Length) + " " + p.Auto.Marca + " " + p.Auto.Patente + " " + p.Auto.Kms);
+                    string datos = p.getClinete().Nombre + ";" + p.getClinete().Dni + ";" + p.getClinete().Telefono + ";" + Convert.ToString(p.getAcompañantes().Length) + ";" + p.Auto.Marca + ";" + p.Auto.Patente + ";" + p.Auto.Kms;
+
+                    historico = datos.Split(';');
+                    verHistorico.dgvHistorico.ColumnCount = historico.Length;
+                    verHistorico.dgvHistorico.Rows.Add(historico);
 
                 }
-
-
-
             }
         }
 
@@ -1428,24 +1435,30 @@ namespace Agencia_Autos
             }
 
 
-            if (ventana.ShowDialog() == DialogResult.Yes) {
+            while (ventana.ShowDialog() == DialogResult.Yes) {
 
                 administracion.GetAlquileres()[ventana.dgvAlquileres.CurrentRow.Index].Auto.Disponible = true;
                 administracion.GetAlquileres().RemoveAt(ventana.dgvAlquileres.CurrentRow.Index);
-               
-                
+
+
                 ActualizarListboxs();
 
-            
-            
+
+                ventana.dgvAlquileres.Rows.Clear();
+
+                foreach (Alquiler p in administracion.GetAlquileres())
+                {
+
+
+                    string datos = p.getClinete().Nombre + ";" + p.getClinete().Dni + ";" + p.getClinete().Telefono + ";" + Convert.ToString(p.DiasDeAlquiler) + ";" + p.Auto.Marca + ";" + p.Auto.Patente + ";" + p.Auto.Kms + ";" + (p.Auto.PrecioAlquiladoEnUDC * p.PrecioAlquilado * p.DiasDeAlquiler);
+
+                    alquileres = datos.Split(';');
+                    ventana.dgvAlquileres.ColumnCount = alquileres.Length;
+                    ventana.dgvAlquileres.Rows.Add(alquileres);
+
+
+                }
             }
-
-
-
-
-
-
-
         }
     }
 }
