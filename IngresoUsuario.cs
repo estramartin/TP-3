@@ -34,7 +34,7 @@ namespace Agencia_Autos
         {
 
 
-           
+           /*
 
            string nombre = tbNombreUsuario.Text;
             string clave = tbClave.Text;
@@ -55,7 +55,7 @@ namespace Agencia_Autos
                 this.Close();
 
             }
-
+           */
 
 
         }

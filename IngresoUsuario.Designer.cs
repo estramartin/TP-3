@@ -118,7 +118,6 @@
             this.Controls.Add(this.tbClave);
             this.Controls.Add(this.tbNombreUsuario);
             this.Controls.Add(this.btnIngresar);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "IngresoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IngresoUsuario";

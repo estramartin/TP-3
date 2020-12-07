@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menúToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,9 +63,10 @@
             this.button2 = new System.Windows.Forms.Button();
             this.printComprobante = new System.Drawing.Printing.PrintDocument();
             this.printPermisos = new System.Drawing.Printing.PrintDocument();
+            this.printArchivo = new System.Drawing.Printing.PrintDocument();
+            this.agregarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.printArchivo = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -88,7 +89,8 @@
             this.agregarToolStripMenuItem,
             this.borrarRegistrosToolStripMenuItem,
             this.modificarValoresDeAlquilerToolStripMenuItem,
-            this.verGraficosToolStripMenuItem});
+            this.verGraficosToolStripMenuItem,
+            this.agregarUsuarioToolStripMenuItem});
             this.menúToolStripMenuItem.Name = "menúToolStripMenuItem";
             this.menúToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menúToolStripMenuItem.Text = "Menú";
@@ -233,14 +235,14 @@
             this.CPRECIO});
             this.DGV1.Location = new System.Drawing.Point(184, 110);
             this.DGV1.Name = "DGV1";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV1.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV1.Size = new System.Drawing.Size(747, 406);
             this.DGV1.TabIndex = 17;
@@ -366,6 +368,17 @@
             // 
             this.printPermisos.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printPermisos_PrintPage);
             // 
+            // printArchivo
+            // 
+            this.printArchivo.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printArchivo_PrintPage);
+            // 
+            // agregarUsuarioToolStripMenuItem
+            // 
+            this.agregarUsuarioToolStripMenuItem.Name = "agregarUsuarioToolStripMenuItem";
+            this.agregarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.agregarUsuarioToolStripMenuItem.Text = "Agregar Usuario";
+            this.agregarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.agregarUsuarioToolStripMenuItem_Click);
+            // 
             // pblogo
             // 
             this.pblogo.Location = new System.Drawing.Point(0, 30);
@@ -383,10 +396,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
-            // 
-            // printArchivo
-            // 
-            this.printArchivo.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printArchivo_PrintPage);
             // 
             // Form1
             // 
@@ -465,6 +474,7 @@
         private System.Windows.Forms.ToolStripMenuItem historicoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alquilerVigenteToolStripMenuItem;
         private System.Drawing.Printing.PrintDocument printArchivo;
+        private System.Windows.Forms.ToolStripMenuItem agregarUsuarioToolStripMenuItem;
     }
 }
 

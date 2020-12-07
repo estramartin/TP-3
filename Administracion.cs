@@ -12,8 +12,8 @@ namespace Agencia_Autos
     [Serializable]
     class Administracion
     {
-        private double pesos; 
-        public List<Persona> Usuario = new List<Persona>();
+        private double pesos;
+        List<Persona> listausuario = new List<Persona>();
         List<Alquiler> alquilerVigente = new List<Alquiler>();
         List<Vehículo> vehículos = new List<Vehículo>();
         List<Vehículo> vehículoConChofers = new List<Vehículo>();
@@ -21,18 +21,18 @@ namespace Agencia_Autos
         Empresa unaEmpresa;
         Persona unUsuario;
 
-       
+
         public Administracion(Empresa unaEmpresa, Historico unHistorico)
         {
 
-           
+
             this.unaEmpresa = unaEmpresa;
             this.unHistorico = new Historico();
             this.unHistorico = unHistorico;
             unUsuario = new Usuario("Supervisor", "supervisar", true);
-            Usuario.Add(unUsuario);
+           /* listausuario.Add(unUsuario);
             unUsuario = new Usuario("Administrador", "administrar", false);
-            Usuario.Add(unUsuario);
+            listausuario.Add(unUsuario);*/
         }
 
         public double Pesos {
@@ -40,7 +40,7 @@ namespace Agencia_Autos
             set { pesos = value; }
         }
 
-       
+
 
         public void agregarVehiculo(Vehículo v) {
             if (v != null)
@@ -49,14 +49,14 @@ namespace Agencia_Autos
                 {
 
                     vehículos.Add(v);
-                    
+
 
                 }
                 else
                 {
                     vehículoConChofers.Add(v);
-                   
-                    
+
+
                 }
             }
             else throw new NullReferenceException();
@@ -65,10 +65,12 @@ namespace Agencia_Autos
         }
 
         public void agregarUsuario(Persona usuario) {
-            
-            Usuario.Add(usuario);
-        
-        
+
+           
+            listausuario.Add(usuario);
+
+           
+
         }
         public void CargarAlquiler(Alquiler unAlquiler) {
 
@@ -77,57 +79,57 @@ namespace Agencia_Autos
             alquiler = unAlquiler;
 
             alquilerVigente.Add(alquiler);
-        
+
         }
 
         public double Devolucion(int pos, int kms, DataGridView lbAlquileres, DateTime finalizar) {
 
-           // paso un parametro DateTime para que no sea siempre valor 1
-            
-            double preciofinal=0;
+            // paso un parametro DateTime para que no sea siempre valor 1
+
+            double preciofinal = 0;
             double aCobrar = 0;
-           // DateTime finalizar = DateTime.Now; //tiempo exacto en el que termina el alquiler
-           
-            
-            
+            // DateTime finalizar = DateTime.Now; //tiempo exacto en el que termina el alquiler
+
+
+
             TimeSpan periodoAlquiler = finalizar.Subtract(alquilerVigente[pos].InicioAlquiler); // intervalo en el que el vehiculo permanecio alquilado
 
             if (finalizar < DateTime.Now) {
-               
+
                 throw new Exception("Fecha mal ingresada");
-            
+
             }
 
 
             int kilometrosPermitidos = 500;
-                 
-            
-                   
-            int diasdealquiler =Convert.ToInt32(Math.Ceiling( periodoAlquiler.TotalDays));            
+
+
+
+            int diasdealquiler = Convert.ToInt32(Math.Ceiling(periodoAlquiler.TotalDays));
             double diasDeAlquilerEnMintos = periodoAlquiler.TotalMinutes;
             double DiasSolicitadosAMinutos = ((alquilerVigente[pos].DiasDeAlquiler * 1440) - 120);
 
-           
 
-                int recorrido = kms - alquilerVigente[pos].Auto.Kms;
+
+            int recorrido = kms - alquilerVigente[pos].Auto.Kms;
             alquilerVigente[pos].KmsRecorridos = recorrido;
 
             if (recorrido < 0)
             {
-                throw new Exception("Error al ingresar el Kilometraje");                
+                throw new Exception("Error al ingresar el Kilometraje");
 
             }
-            
-            
-                int recorridoPermitido = alquilerVigente[pos].DiasDeAlquiler * kilometrosPermitidos;
+
+
+            int recorridoPermitido = alquilerVigente[pos].DiasDeAlquiler * kilometrosPermitidos;
 
 
 
-                if ((diasDeAlquilerEnMintos <= DiasSolicitadosAMinutos) && (recorrido <= recorridoPermitido))
-                {
+            if ((diasDeAlquilerEnMintos <= DiasSolicitadosAMinutos) && (recorrido <= recorridoPermitido))
+            {
 
-                    aCobrar = diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC; //Sin Multa
-                }
+                aCobrar = diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC; //Sin Multa
+            }
             if ((diasDeAlquilerEnMintos <= DiasSolicitadosAMinutos) && (recorrido > recorridoPermitido))
             {
 
@@ -152,78 +154,78 @@ namespace Agencia_Autos
             if ((diasDeAlquilerEnMintos > DiasSolicitadosAMinutos) && (recorrido <= recorridoPermitido))
             {
 
-                    int exedente = diasdealquiler - alquilerVigente[pos].DiasDeAlquiler;
-                    alquilerVigente[pos].MultaXDias = exedente * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1 * alquilerVigente[pos].PrecioAlquilado;
+                int exedente = diasdealquiler - alquilerVigente[pos].DiasDeAlquiler;
+                alquilerVigente[pos].MultaXDias = exedente * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1 * alquilerVigente[pos].PrecioAlquilado;
                 alquilerVigente[pos].ExcesoDias = exedente;
                 aCobrar = (alquilerVigente[pos].DiasDeAlquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC) + (exedente * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1);
 
             }
-             if ((diasDeAlquilerEnMintos > DiasSolicitadosAMinutos) && (recorrido > recorridoPermitido))
-             {
-                    double multa = 0;
+            if ((diasDeAlquilerEnMintos > DiasSolicitadosAMinutos) && (recorrido > recorridoPermitido))
+            {
+                double multa = 0;
 
-                    int exedenteKms = recorrido - recorridoPermitido;
+                int exedenteKms = recorrido - recorridoPermitido;
                 alquilerVigente[pos].ExcesoKms = exedenteKms;
                 if (exedenteKms <= 100) multa = (diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC) + (exedenteKms * 3); // multa medos de 100kms
-                    else multa = (diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC) + (exedenteKms * 5); // multa mas de 100kms
-                    alquilerVigente[pos].MultaxKms = multa* alquilerVigente[pos].PrecioAlquilado;
-                    double exedenteDias = diasdealquiler - alquilerVigente[pos].DiasDeAlquiler;
+                else multa = (diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC) + (exedenteKms * 5); // multa mas de 100kms
+                alquilerVigente[pos].MultaxKms = multa * alquilerVigente[pos].PrecioAlquilado;
+                double exedenteDias = diasdealquiler - alquilerVigente[pos].DiasDeAlquiler;
                 alquilerVigente[pos].ExcesoDias = Convert.ToInt32(exedenteDias);
-                    aCobrar = (diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC) + multa + (exedenteDias * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1);
-                     alquilerVigente[pos].MultaXDias =( (exedenteDias * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1)* alquilerVigente[pos].PrecioAlquilado);
+                aCobrar = (diasdealquiler * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC) + multa + (exedenteDias * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1);
+                alquilerVigente[pos].MultaXDias = ((exedenteDias * alquilerVigente[pos].Auto.PrecioAlquiladoEnUDC * 1.1) * alquilerVigente[pos].PrecioAlquilado);
             }
 
-                if (alquilerVigente[pos].Auto.Conchofer == false) preciofinal = aCobrar * alquilerVigente[pos].PrecioAlquilado;
-                else
-                {
+            if (alquilerVigente[pos].Auto.Conchofer == false) preciofinal = aCobrar * alquilerVigente[pos].PrecioAlquilado;
+            else
+            {
 
-                    alquilerVigente[pos].Viaticos = (Chofer.viatico * diasdealquiler) * alquilerVigente[pos].PrecioAlquilado;
-                    aCobrar = aCobrar + (Chofer.viatico * diasdealquiler);
-                    preciofinal = aCobrar * alquilerVigente[pos].PrecioAlquilado;
-
-
-                }
-  
-                unHistorico.IngrearAlquiler(alquilerVigente[pos]);
-                alquilerVigente[pos].Auto.Kms = kms;
-                alquilerVigente[pos].Auto.Disponible = true;
+                alquilerVigente[pos].Viaticos = (Chofer.viatico * diasdealquiler) * alquilerVigente[pos].PrecioAlquilado;
+                aCobrar = aCobrar + (Chofer.viatico * diasdealquiler);
+                preciofinal = aCobrar * alquilerVigente[pos].PrecioAlquilado;
 
 
-                alquilerVigente.RemoveAt(pos);
+            }
 
-                lbAlquileres.Rows.Clear();
-
-                foreach (Alquiler a in alquilerVigente)
-                {
-
-                    lbAlquileres.Rows.Add(a.getClinete().Nombre + " " + a.getClinete().Dni + " " + a.getClinete().Telefono + " " + Convert.ToString(a.getAcompañantes().Length) + " " + a.Auto.Marca + " " + a.Auto.Patente + " " + a.Auto.Kms);
-
-                }
-
-                return preciofinal;
+            unHistorico.IngrearAlquiler(alquilerVigente[pos]);
+            alquilerVigente[pos].Auto.Kms = kms;
+            alquilerVigente[pos].Auto.Disponible = true;
 
 
+            alquilerVigente.RemoveAt(pos);
 
-           
+            lbAlquileres.Rows.Clear();
+
+            foreach (Alquiler a in alquilerVigente)
+            {
+
+                lbAlquileres.Rows.Add(a.getClinete().Nombre + " " + a.getClinete().Dni + " " + a.getClinete().Telefono + " " + Convert.ToString(a.getAcompañantes().Length) + " " + a.Auto.Marca + " " + a.Auto.Patente + " " + a.Auto.Kms);
+
+            }
+
+            return preciofinal;
+
+
+
+
         }
 
-      
+
 
         public List<Vehículo> GetVehículos() {
 
             return vehículos;
-        
+
         }
         public List<Vehículo> GetVehiculosConChofer() {
 
             return vehículoConChofers;
-        
+
         }
 
         public List<Persona> GetUsuario()
         {
 
-            return Usuario;
+            return listausuario;
 
         }
 
@@ -231,13 +233,13 @@ namespace Agencia_Autos
 
 
             return alquilerVigente;
-        
+
         }
 
         public Historico VerHistorico() {
 
             return unHistorico;
-        
+
         }
         public Empresa GetEmpresa()
         {
@@ -278,68 +280,26 @@ namespace Agencia_Autos
             archivo.Dispose();
 
             return listar;
-        
+
+
+        }
+
+        public bool GetLogeo(string nombre, string clave, bool supervisor) {
+
+            bool checkeo = false;
+            foreach (Persona u in listausuario) {
+
+                if (((Usuario)u).Nombreusuario == nombre && ((Usuario)u).Clave == clave && ((Usuario)u).TipoUsuario == supervisor)
+                {
+                    checkeo = true;
+                }          
+            
+            }
+
+            return checkeo;
         
         }
 
-
-       /* public void GrabarCSV(DataGridView dg) {
-
-           
-
-            string ruta = Application.StartupPath + "\\imprimible.csv";
-            if (File.Exists(ruta)) { File.Delete(ruta); }
-            
-            
-            
-            FileStream archivo = new FileStream(ruta, FileMode.Create, FileAccess.Write);
-
-            StreamWriter escritor = new StreamWriter(archivo);
-
-          
-            string[] lineas;
-
-            foreach (Vehículo v in vehículos) {
-
-                string renglon = v.Marca + ";" + v.Modelo + ";" + v.Patente + ";" + v.Capacidad + ";" + v.Kms;
-                escritor.WriteLine(renglon);
-                lineas = renglon.Split(';');
-                dg.ColumnCount = lineas.Length;
-                dg.Rows.Add(lineas);
-            
-            }
-            foreach (Vehículo v in vehículoConChofers)
-            {
-
-                string renglon = v.Marca + ";" + v.Modelo + ";" + v.Patente + ";" + v.Capacidad + ";" + v.Kms;
-                escritor.WriteLine(renglon);
-                
-
-
-            }
-            foreach (Alquiler a in alquilerVigente) {
-
-
-                string renglon = "En Proceso:" + ";" + a.Auto.Marca + ";" + a.Auto.Patente + ";" + a.DiasDeAlquiler;
-                escritor.WriteLine(renglon);
-                lineas = renglon.Split(';');
-                dg.ColumnCount = lineas.Length;
-                dg.Rows.Add(lineas);
-            }
-            foreach (Alquiler u in alquilerVigente) {
-
-                string renglon = "Cliente con alquileres: " + ";" + u.getClinete().DatosPersonales();
-                escritor.WriteLine(renglon);
-                lineas = renglon.Split(';');
-                dg.ColumnCount = lineas.Length;
-                dg.Rows.Add(lineas);
-
-            }
-
-            escritor.Close();
-            archivo.Dispose();
-        
-        }*/
-
+    
     }
 }
