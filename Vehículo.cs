@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Vehículo: IComparable
+    class Vehículo: IComparable, IGuardar
     {
        
         private bool disponible, conchofer;
@@ -69,7 +69,14 @@ namespace Agencia_Autos
         
         }
 
+        public string GrabarCSV() {
+
+            return marca + ";" +patente + ";" + modelo + ";" + tipocombustible + ";" + patente + ";" + capacidad + ";" + kms;
+
+
+        }
         
+
         
     }
 }

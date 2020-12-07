@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Agencia_Autos   
 {
     [Serializable]
-    class VehículoConChofer:Vehículo
+    class VehículoConChofer:Vehículo, IGuardar
     {
 
 
@@ -29,8 +29,8 @@ namespace Agencia_Autos
 
         public Persona UnChofer { get => unChofer; set => unChofer = value; }
 
-       
 
+       
 
 
     }

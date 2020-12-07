@@ -9,7 +9,7 @@ using System.IO;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Alquiler
+    class Alquiler: IGuardar
     {
         private Persona cliente;
         private Vehículo vehiculo;
@@ -130,7 +130,13 @@ namespace Agencia_Autos
         
         }
 
-        
+        public string GrabarCSV() {
+
+
+            return Auto.Marca + ";" + Auto.Modelo + ";" + Auto.Patente+"\n"+ cliente.DatosPersonales();
+
+
+        }
 
 
     }

@@ -1050,7 +1050,7 @@ namespace Agencia_Autos
             //MOSTRAR REGUSTROS DE ARCHIVOS
             VerArchivos unArchivo = new VerArchivos();
 
-            administracion.GrabarCSV(unArchivo.dataGridView1);
+            administracion.ListarIGuardar(unArchivo.dataGridView1);
                       
 
             if (unArchivo.ShowDialog() == DialogResult.OK) {

@@ -10,7 +10,7 @@ using System.IO;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Administracion: IGuardar
+    class Administracion
     {
         private double pesos; 
         public List<Persona> Usuario = new List<Persona>();
@@ -246,7 +246,44 @@ namespace Agencia_Autos
 
         }
 
-        public void GrabarCSV(DataGridView dg) {
+        public List<IGuardar> ListarIGuardar(DataGridView dg) {
+
+            List<IGuardar> listar = new List<IGuardar>();
+
+            listar.AddRange(vehículos.ToArray());
+            listar.AddRange(vehículoConChofers.ToArray());
+            listar.AddRange(alquilerVigente.ToArray());
+
+            string ruta = Application.StartupPath + "\\imprimible.csv";
+            if (File.Exists(ruta)) { File.Delete(ruta); }
+
+            FileStream archivo = new FileStream(ruta, FileMode.Create, FileAccess.Write);
+
+            StreamWriter escritor = new StreamWriter(archivo);
+
+
+            string[] lineas;
+
+            foreach (IGuardar v in listar)
+            {
+
+                string renglon = v.GrabarCSV();
+                escritor.WriteLine(renglon);
+                lineas = renglon.Split(';');
+                dg.ColumnCount = lineas.Length;
+                dg.Rows.Add(lineas);
+
+            }
+            escritor.Close();
+            archivo.Dispose();
+
+            return listar;
+        
+        
+        }
+
+
+       /* public void GrabarCSV(DataGridView dg) {
 
            
 
@@ -302,7 +339,7 @@ namespace Agencia_Autos
             escritor.Close();
             archivo.Dispose();
         
-        }
+        }*/
 
     }
 }

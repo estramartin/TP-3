@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Agencia_Autos
 {
     [Serializable]
-    class Cliente: Persona
+    class Cliente: Persona, IGuardar
     {
 
              
@@ -51,7 +51,12 @@ namespace Agencia_Autos
             
         }
 
+        public string GrabarCSV() {
 
+
+            return DatosPersonales();
+        
+        }
 
     }
 }
