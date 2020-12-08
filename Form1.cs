@@ -134,7 +134,7 @@ namespace Agencia_Autos
        
 
         private void sinChoferToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//AGREGAR VEHICULO SIN CHOFER
             Agregar_Vehiculo agregar = new Agregar_Vehiculo();
 
             bool control = false;
@@ -218,7 +218,7 @@ namespace Agencia_Autos
         }
 
         private void conChoferToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//AGREGAR VEHICULO CON CHOFER
             Agregar_Vehiculo agregar = new Agregar_Vehiculo();
 
             bool control = false;
@@ -333,7 +333,7 @@ namespace Agencia_Autos
         }
 
         private void modificarValoresDeAlquilerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
+        {//MODIFICAR LOS VALORES DE ALQUILER
             ModificarValoresDeAlquiler modificar = new ModificarValoresDeAlquiler();
             try
             {
@@ -457,6 +457,7 @@ namespace Agencia_Autos
                     fila = new DataGridViewRow();
                     fila.CreateCells(DGV1);
                     fila.Cells[CMARCA.Index].Value = v.Marca;
+                    fila.Cells[CPATENTE.Index].Value = v.Patente;
                     fila.Cells[CMOODELO.Index].Value = v.Modelo;
                     fila.Cells[CCAPACIDAD.Index].Value = v.Capacidad;
                     fila.Cells[CKMS.Index].Value = v.Kms;
@@ -482,6 +483,7 @@ namespace Agencia_Autos
                     fila.CreateCells(DGV1);
                     fila.Cells[CMARCA.Index].Value = v.Marca;
                     fila.Cells[CMOODELO.Index].Value = v.Modelo;
+                    fila.Cells[CPATENTE.Index].Value = v.Patente;
                     fila.Cells[CCAPACIDAD.Index].Value = v.Capacidad;
                     fila.Cells[CKMS.Index].Value = v.Kms;
                     fila.Cells[CPRECIO.Index].Value = ((v.UnidadDeCobro) * (administracion.Pesos));
