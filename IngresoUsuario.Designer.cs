@@ -85,6 +85,7 @@
             // 
             // btnSalir
             // 
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Retry;
             this.btnSalir.Location = new System.Drawing.Point(327, 377);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(113, 25);

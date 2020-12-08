@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menúToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,6 +67,8 @@
             this.agregarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.graficoAPataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graficoAPataAsientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -170,7 +172,9 @@
             // 
             this.verGraficosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.asientosToolStripMenuItem,
-            this.conSinChoferToolStripMenuItem});
+            this.conSinChoferToolStripMenuItem,
+            this.graficoAPataToolStripMenuItem,
+            this.graficoAPataAsientosToolStripMenuItem});
             this.verGraficosToolStripMenuItem.Name = "verGraficosToolStripMenuItem";
             this.verGraficosToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
             this.verGraficosToolStripMenuItem.Text = "Ver Graficos";
@@ -179,14 +183,14 @@
             // asientosToolStripMenuItem
             // 
             this.asientosToolStripMenuItem.Name = "asientosToolStripMenuItem";
-            this.asientosToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.asientosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.asientosToolStripMenuItem.Text = "Asientos";
             this.asientosToolStripMenuItem.Click += new System.EventHandler(this.asientosToolStripMenuItem_Click);
             // 
             // conSinChoferToolStripMenuItem
             // 
             this.conSinChoferToolStripMenuItem.Name = "conSinChoferToolStripMenuItem";
-            this.conSinChoferToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.conSinChoferToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.conSinChoferToolStripMenuItem.Text = "Con/Sin Chofer";
             this.conSinChoferToolStripMenuItem.Click += new System.EventHandler(this.conSinChoferToolStripMenuItem_Click);
             // 
@@ -235,14 +239,14 @@
             this.CPRECIO});
             this.DGV1.Location = new System.Drawing.Point(184, 110);
             this.DGV1.Name = "DGV1";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGV1.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGV1.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DGV1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGV1.Size = new System.Drawing.Size(747, 406);
             this.DGV1.TabIndex = 17;
@@ -397,6 +401,20 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // graficoAPataToolStripMenuItem
+            // 
+            this.graficoAPataToolStripMenuItem.Name = "graficoAPataToolStripMenuItem";
+            this.graficoAPataToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.graficoAPataToolStripMenuItem.Text = "Grafico A Pata Con/Sin Chofer";
+            this.graficoAPataToolStripMenuItem.Click += new System.EventHandler(this.graficoAPataToolStripMenuItem_Click);
+            // 
+            // graficoAPataAsientosToolStripMenuItem
+            // 
+            this.graficoAPataAsientosToolStripMenuItem.Name = "graficoAPataAsientosToolStripMenuItem";
+            this.graficoAPataAsientosToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.graficoAPataAsientosToolStripMenuItem.Text = "Grafico A Pata Asientos";
+            this.graficoAPataAsientosToolStripMenuItem.Click += new System.EventHandler(this.graficoAPataAsientosToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,6 +493,8 @@
         private System.Windows.Forms.ToolStripMenuItem alquilerVigenteToolStripMenuItem;
         private System.Drawing.Printing.PrintDocument printArchivo;
         private System.Windows.Forms.ToolStripMenuItem agregarUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem graficoAPataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem graficoAPataAsientosToolStripMenuItem;
     }
 }
 

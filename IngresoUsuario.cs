@@ -34,35 +34,13 @@ namespace Agencia_Autos
         {
 
 
-           /*
-
-           string nombre = tbNombreUsuario.Text;
-            string clave = tbClave.Text;
-            bool Supervisor;
-            if (cbSupervisor.Checked == true) { Supervisor = true; }
-            else { Supervisor = false; }
-
-            if (nombre == "Administrador" && clave == "administrar" && Supervisor == false) {
-
-                superovisor = false;
-                this.Close();
-            
-            }
-            if (nombre == "Supervisor" && clave == "supervisar" && Supervisor == true)
-            {
-
-                superovisor = true;
-                this.Close();
-
-            }
-           */
-
+           
 
         }
 
         public void btnSalir_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
     }
 }

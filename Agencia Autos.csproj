@@ -103,11 +103,23 @@
     <Compile Include="GenerarAlquiler.Designer.cs">
       <DependentUpon>GenerarAlquiler.cs</DependentUpon>
     </Compile>
+    <Compile Include="GraficoAPataAsientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraficoAPataAsientos.Designer.cs">
+      <DependentUpon>GraficoAPataAsientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Graficos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Graficos.Designer.cs">
       <DependentUpon>Graficos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GraficosAPata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GraficosAPata.Designer.cs">
+      <DependentUpon>GraficosAPata.cs</DependentUpon>
     </Compile>
     <Compile Include="Historico.cs" />
     <Compile Include="IGuardar.cs" />
@@ -177,8 +189,14 @@
     <EmbeddedResource Include="GenerarAlquiler.resx">
       <DependentUpon>GenerarAlquiler.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GraficoAPataAsientos.resx">
+      <DependentUpon>GraficoAPataAsientos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Graficos.resx">
       <DependentUpon>Graficos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GraficosAPata.resx">
+      <DependentUpon>GraficosAPata.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IngresoUsuario.resx">
       <DependentUpon>IngresoUsuario.cs</DependentUpon>

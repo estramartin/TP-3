@@ -118,18 +118,7 @@ namespace Agencia_Autos
             
             }
             
-            
-            
-            
-            
-            /* ingresarUsuario.ShowDialog();
-            
-            if (ingresarUsuario.superovisor == true){ menuStrip1.Show(); }
-            else { menuStrip1.Hide(); }
-
-            ingresarUsuario.Dispose();*/
-
-           SinChof.AddRange(administracion.GetVehículos());
+            SinChof.AddRange(administracion.GetVehículos());
            ConChof.AddRange(administracion.GetVehiculosConChofer());
             
            
@@ -147,92 +136,99 @@ namespace Agencia_Autos
         {
             Agregar_Vehiculo agregar = new Agregar_Vehiculo();
 
-            try
+            bool control = false;
+            while (control == false)
             {
-                agregar.Size = new Size(816, 370);
-                agregar.btnCargar.Location = new Point(657, 296);
-                agregar.btnSalir.Location = new Point(59, 300);
-                if (agregar.ShowDialog() == DialogResult.OK)
+                control = true;
+                try
+                {
+                    agregar.Size = new Size(816, 370);
+                    agregar.btnCargar.Location = new Point(657, 296);
+                    agregar.btnSalir.Location = new Point(59, 300);
+                    if (agregar.ShowDialog() == DialogResult.OK)
+                    {
+
+                        bool disponible = true, chofer = false;
+
+
+                        string patente = agregar.tbPatente.Text;
+                        string marca = agregar.tbMarca.Text;
+                        string modelo = agregar.tbModelo.Text;
+                        string combustible = agregar.tbtipoCombustible.Text;
+                        int capacidad = Convert.ToInt32(agregar.tbCapacidad.Text);
+                        string path = agregar.path;
+                        int unidadDeCobro = Convert.ToInt32(agregar.tbUnidadDeCobro.Text);
+                        int kms = Convert.ToInt32(agregar.tbKilometros.Text);
+
+                        foreach (Vehículo v in SinChof)
+                        {
+
+                            if (v.Patente == patente)
+                            {
+
+                                throw new ApplicationException("La Patente Ya Existe!");
+
+                            }
+
+
+                        }
+                        foreach (Vehículo v in ConChof)
+                        {
+
+                            if (v.Patente == patente)
+                            {
+
+                                throw new ApplicationException("La Patente Ya Existe!");
+
+                            }
+
+
+                        }
+                        vehículo = new Vehículo(disponible, chofer, patente, marca, modelo, combustible, path, capacidad, unidadDeCobro, kms);
+
+
+
+                        administracion.agregarVehiculo(vehículo);
+                        administracion.GetVehículos().Sort();
+                        SinChof.Clear();
+                        SinChof.AddRange(administracion.GetVehículos());
+
+                        ActualizarListboxs();
+
+
+
+
+                    }
+                }
+
+                catch (FormatException ex)
                 {
 
-                    bool disponible = true, chofer = false;
-
-
-                    string patente = agregar.tbPatente.Text;
-                    string marca = agregar.tbMarca.Text;
-                    string modelo = agregar.tbModelo.Text;
-                    string combustible = agregar.tbtipoCombustible.Text;
-                    int capacidad = Convert.ToInt32(agregar.tbCapacidad.Text);
-                    string path = agregar.path;
-                    int unidadDeCobro = Convert.ToInt32(agregar.tbUnidadDeCobro.Text);
-                    int kms = Convert.ToInt32(agregar.tbKilometros.Text);
-
-                    foreach (Vehículo v in SinChof)
-                    {
-
-                        if (v.Patente == patente)
-                        {
-
-                            throw new ApplicationException("La Patente Ya Existe!");
-
-                        }
-
-
-                    }
-                    foreach (Vehículo v in ConChof)
-                    {
-
-                        if (v.Patente == patente)
-                        {
-
-                            throw new ApplicationException("La Patente Ya Existe!");
-
-                        }
-
-
-                    }
-                    vehículo = new Vehículo(disponible, chofer, patente, marca, modelo, combustible, path, capacidad, unidadDeCobro, kms);
-
-
-
-                    administracion.agregarVehiculo(vehículo);
-                    administracion.GetVehículos().Sort();
-                    SinChof.Clear();
-                    SinChof.AddRange(administracion.GetVehículos());
-
-                    ActualizarListboxs();
-
-
-
+                    control = false;
+                    MessageBox.Show(ex.Message);
 
                 }
-            }
-
-            catch (FormatException ex)
-            {
-
-                MessageBox.Show(ex.Message);
+                catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
 
             }
-            catch (ApplicationException er) { MessageBox.Show(er.Message); }
-                
-            
         }
 
         private void conChoferToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Agregar_Vehiculo agregar = new Agregar_Vehiculo();
-           // agregar.btnEliminar.Hide();
+
+           
+            
             try
             {
 
                 agregar.Size = new Size(816, 706);
                 agregar.btnCargar.Location = new Point(565, 636);
                 agregar.btnSalir.Location = new Point(35, 641);
-
+               
                 if (agregar.ShowDialog() == DialogResult.OK)
                 {
-
+                  
                     bool disponible = true, chofer = true;
 
 
@@ -250,7 +246,7 @@ namespace Agencia_Autos
 
                         if (v.Patente == patente)
                         {
-
+                            
                             throw new ApplicationException("La Patente Ya Existe!");
 
                         }
@@ -262,7 +258,7 @@ namespace Agencia_Autos
 
                         if (v.Patente == patente)
                         {
-
+                            
                             throw new ApplicationException("La Patente Ya Existe!");
 
                         }
@@ -283,16 +279,18 @@ namespace Agencia_Autos
                     foreach (Vehículo c in administracion.GetVehiculosConChofer()) {
 
                         if (((VehículoConChofer)c).UnChofer.Cuit == cuil) {
-
+                           
                             throw new ApplicationException("El Cuit: "+cuil+" Ya Existe!");
                         }
                         if (((VehículoConChofer)c).UnChofer.Dni == Dni) {
-
+                           
                             throw new ApplicationException("El DNI: "+Dni+" Ya Existe!");
                         }
                         if (((Chofer)((VehículoConChofer)c).UnChofer).Carnet == carnet)
-
-                            throw new ApplicationException("El Carnet: "+carnet +" Ya Existe!");
+                        {
+                           
+                            throw new ApplicationException("El Carnet: " + carnet + " Ya Existe!");
+                        }
                     }
 
 
@@ -313,7 +311,7 @@ namespace Agencia_Autos
             }
             catch (FormatException er)
             {
-
+                
                 MessageBox.Show(er.Message);
 
             }
@@ -562,11 +560,8 @@ namespace Agencia_Autos
         {
 
             Ticket comprobante = new Ticket();
-            bool control = false;
-
-            while (control == false)
-            {
-                control = true;
+                            
+               
                 try
                 {
                     if (cbChofer.SelectedIndex == 1)
@@ -700,9 +695,9 @@ namespace Agencia_Autos
                                 ActualizarListboxs();
 
                             }
-                            catch (FormatException) { control = false; }
-                            catch (ArgumentOutOfRangeException) { control = false; }
-                            catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
+                            catch (FormatException) { }
+                            catch (ArgumentOutOfRangeException) { }
+                            catch (ApplicationException er) { MessageBox.Show(er.Message);  }
                         }
 
 
@@ -734,8 +729,7 @@ namespace Agencia_Autos
                             VentanaAlquilar.comboBox1.Hide();
 
                             VentanaAlquilar.pictureBox1.Image = Image.FromFile(ruta);
-                            VentanaAlquilar.tbCuilAcompañante1.Text = "20328315549";
-                            VentanaAlquilar.tbCuilAcompañante2.Text = "20328315549";
+                            
                             if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
                             {
                                 string nombre = VentanaAlquilar.tbNombreCliente.Text;
@@ -767,14 +761,13 @@ namespace Agencia_Autos
                             }
 
                         }
-                        catch (FormatException) { control = false; }
-                        catch (ArgumentOutOfRangeException) { control = false; }
-                        catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
+                        catch (FormatException) {  }
+                        catch (ArgumentOutOfRangeException) { }
+                        catch (ApplicationException er) { MessageBox.Show(er.Message);  }
                     }
 
 
-                    if (control == true)
-                    {
+                   
 
                         if (Comprobante == null)
                         {
@@ -797,7 +790,7 @@ namespace Agencia_Autos
 
                             }
                         }
-                    }
+                    
                     if (cbChofer.SelectedIndex == 1)
                     {
                         comprobante.printPreviewControl1.Document = printPermisos;
@@ -812,8 +805,8 @@ namespace Agencia_Autos
                     }
                 }
                 catch (ApplicationException er) { MessageBox.Show(er.Message);  }
-                catch (NullReferenceException er) { MessageBox.Show(er.Message); control = false; }
-            }
+               catch (NullReferenceException er) { MessageBox.Show(er.Message);  }
+            
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -1558,6 +1551,54 @@ namespace Agencia_Autos
                 else { agregarEmpleado.Close(); }
 
             }
+        }
+
+        private void graficoAPataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int vConChofer = 0, vSinChofer = 0;
+
+            foreach (Alquiler a in administracion.VerHistorico().GetHistorico())
+            {
+                if (a.Auto.Conchofer == true) { vConChofer++; }
+                else { vSinChofer++; }
+            }
+            GraficosAPata aPata = new GraficosAPata(vConChofer, vSinChofer);
+            aPata.label1.Text = vConChofer.ToString();
+            aPata.label2.Text = vSinChofer.ToString();
+
+            if (aPata.ShowDialog() == DialogResult.OK) { }
+
+        }
+
+        private void graficoAPataAsientosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<int> asientos = new List<int>();
+            SortedDictionary<int, int> agrupados = new SortedDictionary<int, int>();
+
+            foreach (Alquiler h in administracion.VerHistorico().GetHistorico())
+            {
+                asientos.Add(h.Auto.Capacidad);
+            }
+
+            foreach (int a in asientos)
+            {
+                int cont = 1;
+                foreach (int b in asientos)
+                {
+
+                    if (a == b)
+                    {
+
+                        agrupados[a] = cont++;
+
+                    }
+                }
+            }
+
+            GraficoAPataAsientos g = new GraficoAPataAsientos(agrupados);
+            if (g.ShowDialog() == DialogResult.OK) { };
+
+           
         }
     }
 }
