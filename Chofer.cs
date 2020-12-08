@@ -19,7 +19,7 @@ namespace Agencia_Autos
         private string linea;
         public Chofer() { }
 
-        public Chofer(string nombreCompleto, int dni, long cuil, string dir, int tel, DateTime fechanac, string estadoCiv, string nac, long carnet)
+        public Chofer(string nombreCompleto, int dni, long cuil, string dir, long tel, DateTime fechanac, string estadoCiv, string nac, long carnet)
         {
 
             Nombre = nombreCompleto;

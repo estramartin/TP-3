@@ -14,7 +14,7 @@ namespace Agencia_Autos
         protected int dni;
         private long cuit;
         protected string direccion;
-        protected int telefono;
+        protected long telefono;
         protected DateTime fechanac;
         protected string estadocivil;
         protected string nacionalidad;
@@ -86,7 +86,7 @@ namespace Agencia_Autos
 
 
         public string Direccion { get => direccion; set => direccion = value; }
-        public int Telefono { get => telefono; set => telefono = value; }
+        public long Telefono { get => telefono; set => telefono = value; }
         public DateTime Fechanac { get => fechanac; set => fechanac = value; }
         public string Estadocivil { get => estadocivil; set => estadocivil = value; }
         public string Nacionalidad { get => nacionalidad; set => nacionalidad = value; }
