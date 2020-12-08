@@ -146,6 +146,9 @@ namespace Agencia_Autos
                     agregar.Size = new Size(816, 370);
                     agregar.btnCargar.Location = new Point(657, 296);
                     agregar.btnSalir.Location = new Point(59, 300);
+                    
+                    
+                    
                     if (agregar.ShowDialog() == DialogResult.OK)
                     {
 
@@ -218,18 +221,21 @@ namespace Agencia_Autos
         {
             Agregar_Vehiculo agregar = new Agregar_Vehiculo();
 
-           
-            
-            try
+            bool control = false;
+            while (control == false)
             {
+                control = true;
+
+                try
+                 {
 
                 agregar.Size = new Size(816, 706);
                 agregar.btnCargar.Location = new Point(565, 636);
                 agregar.btnSalir.Location = new Point(35, 641);
-               
+
                 if (agregar.ShowDialog() == DialogResult.OK)
                 {
-                  
+
                     bool disponible = true, chofer = true;
 
 
@@ -247,7 +253,7 @@ namespace Agencia_Autos
 
                         if (v.Patente == patente)
                         {
-                            
+
                             throw new ApplicationException("La Patente Ya Existe!");
 
                         }
@@ -259,7 +265,7 @@ namespace Agencia_Autos
 
                         if (v.Patente == patente)
                         {
-                            
+
                             throw new ApplicationException("La Patente Ya Existe!");
 
                         }
@@ -277,26 +283,29 @@ namespace Agencia_Autos
                     string nacionalidad = agregar.tbNacionalidad.Text;
                     long carnet = Convert.ToInt64(agregar.tbCarnet.Text);
 
-                    foreach (Vehículo c in administracion.GetVehiculosConChofer()) {
+                    foreach (Vehículo c in administracion.GetVehiculosConChofer())
+                    {
 
-                        if (((VehículoConChofer)c).UnChofer.Cuit == cuil) {
-                           
-                            throw new ApplicationException("El Cuit: "+cuil+" Ya Existe!");
+                        if (((VehículoConChofer)c).UnChofer.Cuit == cuil)
+                        {
+
+                            throw new ApplicationException("El Cuit: " + cuil + " Ya Existe!");
                         }
-                        if (((VehículoConChofer)c).UnChofer.Dni == Dni) {
-                           
-                            throw new ApplicationException("El DNI: "+Dni+" Ya Existe!");
+                        if (((VehículoConChofer)c).UnChofer.Dni == Dni)
+                        {
+
+                            throw new ApplicationException("El DNI: " + Dni + " Ya Existe!");
                         }
                         if (((Chofer)((VehículoConChofer)c).UnChofer).Carnet == carnet)
                         {
-                           
+
                             throw new ApplicationException("El Carnet: " + carnet + " Ya Existe!");
                         }
                     }
 
 
                     persona = new Chofer(nombre, Dni, cuil, dir, tel, fechanac, estadocivil, nacionalidad, carnet);
-                    
+
                     vehículo = new VehículoConChofer(disponible, chofer, patente, marca, modelo, combustible, path, capacidad, persona, unidadDeCobro, kms);
 
 
@@ -312,13 +321,15 @@ namespace Agencia_Autos
             }
             catch (FormatException er)
             {
-                
+
                 MessageBox.Show(er.Message);
+                    control = false;
 
             }
 
-            catch (OverflowException er) { MessageBox.Show(er.Message); }
-            catch (ApplicationException er) { MessageBox.Show(er.Message); }
+            catch (OverflowException er) { MessageBox.Show(er.Message); control = false; }
+            catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
+        }
         }
 
         private void modificarValoresDeAlquilerToolStripMenuItem_Click(object sender, EventArgs e)
@@ -559,20 +570,27 @@ namespace Agencia_Autos
 
         private void DGV1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {//GENERAR ALQUILER
-
+           
             Ticket comprobante = new Ticket();
+           
+            bool control = false;
 
 
-            try
+            while (control == false)
             {
+                control = true;
+
+                try
+                {
                 if (cbChofer.SelectedIndex == 1)
                 {
 
 
                     string ruta = SinChof[DGV1.CurrentRow.Index].Imagen;
                     GenerarAlquiler VentanaAlquilar = new GenerarAlquiler();
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
+                     ///   DialogResult dr = VentanaAlquilar.ShowDialog();
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
                     VentanaAlquilar.tbDniCliente.Text = "32831554";
                     VentanaAlquilar.tbCuilCliente.Text = "20328315549";
                     VentanaAlquilar.tbDireccionCliente.Text = "Colon 432";
@@ -697,9 +715,9 @@ namespace Agencia_Autos
                             ActualizarListboxs();
 
                         }
-                        catch (FormatException) { }
-                        catch (ArgumentOutOfRangeException) { }
-                        catch (ApplicationException er) { MessageBox.Show(er.Message); }
+                        catch (FormatException) { control = false; }
+                        catch (ArgumentOutOfRangeException) { control = false; }
+                        catch (ApplicationException er) { MessageBox.Show(er.Message); control = false;}
                     }
 
 
@@ -763,52 +781,55 @@ namespace Agencia_Autos
                         }
 
                     }
-                    catch (FormatException) { }
-                    catch (ArgumentOutOfRangeException) { }
-                    catch (ApplicationException er) { MessageBox.Show(er.Message); }
+                    catch (FormatException) { control = false; }
+                    catch (ArgumentOutOfRangeException) { control = false; }
+                    catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
                 }
 
 
-
-
-                if (Comprobante == null)
-                {
-
-                    throw new ApplicationException("Cancelado por el usuario  ");
-                }
-                else
-                {
-
-                    comprobante.printPreviewControl1.Document = printComprobante;
-                    comprobante.printPreviewControl1.Rows = 1;
-                    comprobante.printPreviewControl1.Columns = 1;
-                    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                    if (comprobante.ShowDialog() == DialogResult.OK)
+                    if (control == true)
                     {
 
-                        printComprobante.Print();
+                        if (Comprobante == null)
+                        {
+
+                            throw new ApplicationException("Cancelado por el usuario  ");
+                        }
+                        else
+                        {
+
+                            comprobante.printPreviewControl1.Document = printComprobante;
+                            comprobante.printPreviewControl1.Rows = 1;
+                            comprobante.printPreviewControl1.Columns = 1;
+                            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                            if (comprobante.ShowDialog() == DialogResult.OK)
+                            {
+
+                                printComprobante.Print();
 
 
+                            }
+                        }
+
+                        if (cbChofer.SelectedIndex == 1)
+                        {
+                            comprobante.printPreviewControl1.Document = printPermisos;
+
+                            if (comprobante.ShowDialog() == DialogResult.OK)
+                            {
+
+                                printPermisos.Print();
+
+
+                            }
+                        }
                     }
-                }
-
-                if (cbChofer.SelectedIndex == 1)
-                {
-                    comprobante.printPreviewControl1.Document = printPermisos;
-
-                    if (comprobante.ShowDialog() == DialogResult.OK)
-                    {
-
-                        printPermisos.Print();
-
-
-                    }
-                }
             }
-            catch (ApplicationException er) { MessageBox.Show(er.Message); }
-            catch (NullReferenceException er) { MessageBox.Show(er.Message); }
-            catch (ArgumentNullException er) { MessageBox.Show(er.Message); }
+            catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
+            catch (NullReferenceException er) { MessageBox.Show(er.Message); control = false; }
+            catch (ArgumentNullException er) { MessageBox.Show(er.Message); control = false; }
+        }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
