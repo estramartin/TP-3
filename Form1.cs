@@ -721,8 +721,8 @@ namespace Agencia_Autos
                                 ActualizarListboxs();
 
                             }
-                            catch (FormatException) { control = false; }
-                            catch (ArgumentOutOfRangeException) { control = false; }
+                            catch (FormatException er) { MessageBox.Show(er.Message); control = false; }
+                            catch (ArgumentOutOfRangeException er) { MessageBox.Show(er.Message); control = false; }
                             catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
                         }
                     }
@@ -838,7 +838,7 @@ namespace Agencia_Autos
                         }
                     }
             }
-            catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
+           catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
             catch (NullReferenceException er) { MessageBox.Show(er.Message); control = false; }
             catch (ArgumentNullException er) { MessageBox.Show(er.Message); control = false; }
         
@@ -1122,11 +1122,7 @@ namespace Agencia_Autos
            
         }
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            int[] asd = new int[2];
-            asd[4] = 4;
-        }
+       
 
         private void button2_Click(object sender, EventArgs e)
         {

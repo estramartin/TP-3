@@ -30,51 +30,59 @@ namespace Agencia_Autos
 
             get { return cuit; }
             set {
+                
                 this.cuit = value;
+                
                 int sumatorianumeros =0;
 
                 string cuit = this.cuit.ToString();
 
-                string[]CUIT = new string[11];
-                int[] CONTROLCUIT = new int[10];                       
+                if (cuit.Length < 11) { throw new ArgumentOutOfRangeException("CUIT INVALIDO"); }
 
-                for (int i = 0; i < CUIT.Length; i++)
-                {
-                    CUIT[i] = cuit.Substring(i, 1);
-
-                }
-
-                CONTROLCUIT[0] = Convert.ToInt32(CUIT[0]) * 5;
-                CONTROLCUIT[1] = Convert.ToInt32(CUIT[1]) * 4;
-                CONTROLCUIT[2] = Convert.ToInt32(CUIT[2]) * 3;
-                CONTROLCUIT[3] = Convert.ToInt32(CUIT[3]) * 2;
-                CONTROLCUIT[4] = Convert.ToInt32(CUIT[4]) * 7;
-                CONTROLCUIT[5] = Convert.ToInt32(CUIT[5]) * 6;
-                CONTROLCUIT[6] = Convert.ToInt32(CUIT[6]) * 5;
-                CONTROLCUIT[7] = Convert.ToInt32(CUIT[7]) * 4;
-                CONTROLCUIT[8] = Convert.ToInt32(CUIT[8]) * 3;
-                CONTROLCUIT[9] = Convert.ToInt32(CUIT[9]) * 2;
-
-                foreach (int C in CONTROLCUIT) {
-
-                    sumatorianumeros = C + sumatorianumeros;
-                
-                }
-
-                int ultimoNumero = sumatorianumeros % 11;
-                int verificador = 11 - ultimoNumero;
-
-
-                if (Convert.ToInt32(CUIT[10]) == verificador)
+                else
                 {
 
-                    this.cuit = value;
+                    string[] CUIT = new string[11];
+                    int[] CONTROLCUIT = new int[10];
+
+                    for (int i = 0; i < CUIT.Length; i++)
+                    {
+                        CUIT[i] = cuit.Substring(i, 1);
+
+                    }
+
+                    CONTROLCUIT[0] = Convert.ToInt32(CUIT[0]) * 5;
+                    CONTROLCUIT[1] = Convert.ToInt32(CUIT[1]) * 4;
+                    CONTROLCUIT[2] = Convert.ToInt32(CUIT[2]) * 3;
+                    CONTROLCUIT[3] = Convert.ToInt32(CUIT[3]) * 2;
+                    CONTROLCUIT[4] = Convert.ToInt32(CUIT[4]) * 7;
+                    CONTROLCUIT[5] = Convert.ToInt32(CUIT[5]) * 6;
+                    CONTROLCUIT[6] = Convert.ToInt32(CUIT[6]) * 5;
+                    CONTROLCUIT[7] = Convert.ToInt32(CUIT[7]) * 4;
+                    CONTROLCUIT[8] = Convert.ToInt32(CUIT[8]) * 3;
+                    CONTROLCUIT[9] = Convert.ToInt32(CUIT[9]) * 2;
+
+                    foreach (int C in CONTROLCUIT)
+                    {
+
+                        sumatorianumeros = C + sumatorianumeros;
+
+                    }
+
+                    int ultimoNumero = sumatorianumeros % 11;
+                    int verificador = 11 - ultimoNumero;
+
+
+                    if (Convert.ToInt32(CUIT[10]) == verificador)
+                    {
+
+                        this.cuit = value;
+
+                    }
+                    else { throw new ApplicationException("CUIT INVALIDO"); }
+
 
                 }
-                else { throw new ApplicationException("CUIT INVALIDO"); }
-
-
-
             }
            
         
