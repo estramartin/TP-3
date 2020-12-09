@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModificarValoresDeAlquiler));
             this.btnAceptar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tbModificarValorDeAlquiler = new System.Windows.Forms.TextBox();
@@ -112,6 +113,7 @@
             this.Controls.Add(this.tbModificarValorDeAlquiler);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAceptar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModificarValoresDeAlquiler";
             this.Text = "ModificarValoresDeAlquiler";
             this.Load += new System.EventHandler(this.ModificarValoresDeAlquiler_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VerHistorico));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.btnBorrar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
@@ -137,6 +138,7 @@
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnBorrar);
             this.Controls.Add(this.listBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VerHistorico";
             this.Text = "VerHistorico";
             this.Load += new System.EventHandler(this.VerHistorico_Load);

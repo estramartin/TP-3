@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Agregar_Vehiculo));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -438,6 +439,7 @@
             this.Controls.Add(this.gbDatosVehiculos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCarcarImagenAuto);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Agregar_Vehiculo";
             this.Text = "Agregar_Vehiculo";
             this.Load += new System.EventHandler(this.Agregar_Vehiculo_Load);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AlquileresVigentes));
             this.btnFinalizar = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -177,6 +178,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnFinalizar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AlquileresVigentes";
             this.Load += new System.EventHandler(this.AlquileresVigentes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlquileres)).EndInit();
