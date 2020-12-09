@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menúToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.agregarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,10 +44,21 @@
             this.verGraficosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.asientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.conSinChoferToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graficoAPataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graficoAPataAsientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.agregarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.DGV1 = new System.Windows.Forms.DataGridView();
+            this.CMARCA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPATENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CMOODELO = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCAPACIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CCOMBUSTIBLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CKMS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CDISPONIBILE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CPRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbChofer = new System.Windows.Forms.ComboBox();
             this.cbVehiculos = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,19 +68,8 @@
             this.printComprobante = new System.Drawing.Printing.PrintDocument();
             this.printPermisos = new System.Drawing.Printing.PrintDocument();
             this.printArchivo = new System.Drawing.Printing.PrintDocument();
-            this.agregarUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.graficoAPataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.graficoAPataAsientosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.CMARCA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPATENTE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CMOODELO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCAPACIDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CCOMBUSTIBLE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CKMS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CDISPONIBILE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CPRECIO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -150,14 +151,14 @@
             // historicoToolStripMenuItem
             // 
             this.historicoToolStripMenuItem.Name = "historicoToolStripMenuItem";
-            this.historicoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.historicoToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.historicoToolStripMenuItem.Text = "Historico";
             this.historicoToolStripMenuItem.Click += new System.EventHandler(this.historicoToolStripMenuItem_Click);
             // 
             // alquilerVigenteToolStripMenuItem
             // 
             this.alquilerVigenteToolStripMenuItem.Name = "alquilerVigenteToolStripMenuItem";
-            this.alquilerVigenteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.alquilerVigenteToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.alquilerVigenteToolStripMenuItem.Text = "Alquiler Vigente";
             this.alquilerVigenteToolStripMenuItem.Click += new System.EventHandler(this.alquilerVigenteToolStripMenuItem_Click);
             // 
@@ -193,6 +194,27 @@
             this.conSinChoferToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
             this.conSinChoferToolStripMenuItem.Text = "Con/Sin Chofer";
             this.conSinChoferToolStripMenuItem.Click += new System.EventHandler(this.conSinChoferToolStripMenuItem_Click);
+            // 
+            // graficoAPataToolStripMenuItem
+            // 
+            this.graficoAPataToolStripMenuItem.Name = "graficoAPataToolStripMenuItem";
+            this.graficoAPataToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.graficoAPataToolStripMenuItem.Text = "Grafico A Pata Con/Sin Chofer";
+            this.graficoAPataToolStripMenuItem.Click += new System.EventHandler(this.graficoAPataToolStripMenuItem_Click);
+            // 
+            // graficoAPataAsientosToolStripMenuItem
+            // 
+            this.graficoAPataAsientosToolStripMenuItem.Name = "graficoAPataAsientosToolStripMenuItem";
+            this.graficoAPataAsientosToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
+            this.graficoAPataAsientosToolStripMenuItem.Text = "Grafico A Pata Asientos";
+            this.graficoAPataAsientosToolStripMenuItem.Click += new System.EventHandler(this.graficoAPataAsientosToolStripMenuItem_Click);
+            // 
+            // agregarUsuarioToolStripMenuItem
+            // 
+            this.agregarUsuarioToolStripMenuItem.Name = "agregarUsuarioToolStripMenuItem";
+            this.agregarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
+            this.agregarUsuarioToolStripMenuItem.Text = "Agregar Usuario";
+            this.agregarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.agregarUsuarioToolStripMenuItem_Click);
             // 
             // button3
             // 
@@ -254,6 +276,54 @@
             this.DGV1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV1_CellContentClick);
             this.DGV1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV1_CellContentDoubleClick);
             this.DGV1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGV1_CellDoubleClick);
+            // 
+            // CMARCA
+            // 
+            this.CMARCA.HeaderText = "MARCA";
+            this.CMARCA.Name = "CMARCA";
+            this.CMARCA.ReadOnly = true;
+            // 
+            // CPATENTE
+            // 
+            this.CPATENTE.HeaderText = "PATENTE";
+            this.CPATENTE.Name = "CPATENTE";
+            this.CPATENTE.ReadOnly = true;
+            // 
+            // CMOODELO
+            // 
+            this.CMOODELO.HeaderText = "MODELO";
+            this.CMOODELO.Name = "CMOODELO";
+            this.CMOODELO.ReadOnly = true;
+            // 
+            // CCAPACIDAD
+            // 
+            this.CCAPACIDAD.HeaderText = "CAPACIDAD";
+            this.CCAPACIDAD.Name = "CCAPACIDAD";
+            this.CCAPACIDAD.ReadOnly = true;
+            // 
+            // CCOMBUSTIBLE
+            // 
+            this.CCOMBUSTIBLE.HeaderText = "COMBUSTIBLE";
+            this.CCOMBUSTIBLE.Name = "CCOMBUSTIBLE";
+            this.CCOMBUSTIBLE.ReadOnly = true;
+            // 
+            // CKMS
+            // 
+            this.CKMS.HeaderText = "KMS";
+            this.CKMS.Name = "CKMS";
+            this.CKMS.ReadOnly = true;
+            // 
+            // CDISPONIBILE
+            // 
+            this.CDISPONIBILE.HeaderText = "DISPONIBLE";
+            this.CDISPONIBILE.Name = "CDISPONIBILE";
+            this.CDISPONIBILE.ReadOnly = true;
+            // 
+            // CPRECIO
+            // 
+            this.CPRECIO.HeaderText = "PRECIO";
+            this.CPRECIO.Name = "CPRECIO";
+            this.CPRECIO.ReadOnly = true;
             // 
             // cbChofer
             // 
@@ -325,27 +395,6 @@
             // 
             this.printArchivo.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printArchivo_PrintPage);
             // 
-            // agregarUsuarioToolStripMenuItem
-            // 
-            this.agregarUsuarioToolStripMenuItem.Name = "agregarUsuarioToolStripMenuItem";
-            this.agregarUsuarioToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.agregarUsuarioToolStripMenuItem.Text = "Agregar Usuario";
-            this.agregarUsuarioToolStripMenuItem.Click += new System.EventHandler(this.agregarUsuarioToolStripMenuItem_Click);
-            // 
-            // graficoAPataToolStripMenuItem
-            // 
-            this.graficoAPataToolStripMenuItem.Name = "graficoAPataToolStripMenuItem";
-            this.graficoAPataToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.graficoAPataToolStripMenuItem.Text = "Grafico A Pata Con/Sin Chofer";
-            this.graficoAPataToolStripMenuItem.Click += new System.EventHandler(this.graficoAPataToolStripMenuItem_Click);
-            // 
-            // graficoAPataAsientosToolStripMenuItem
-            // 
-            this.graficoAPataAsientosToolStripMenuItem.Name = "graficoAPataAsientosToolStripMenuItem";
-            this.graficoAPataAsientosToolStripMenuItem.Size = new System.Drawing.Size(234, 22);
-            this.graficoAPataAsientosToolStripMenuItem.Text = "Grafico A Pata Asientos";
-            this.graficoAPataAsientosToolStripMenuItem.Click += new System.EventHandler(this.graficoAPataAsientosToolStripMenuItem_Click);
-            // 
             // pblogo
             // 
             this.pblogo.Location = new System.Drawing.Point(0, 30);
@@ -363,54 +412,6 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
-            // 
-            // CMARCA
-            // 
-            this.CMARCA.HeaderText = "MARCA";
-            this.CMARCA.Name = "CMARCA";
-            this.CMARCA.ReadOnly = true;
-            // 
-            // CPATENTE
-            // 
-            this.CPATENTE.HeaderText = "PATENTE";
-            this.CPATENTE.Name = "CPATENTE";
-            this.CPATENTE.ReadOnly = true;
-            // 
-            // CMOODELO
-            // 
-            this.CMOODELO.HeaderText = "MODELO";
-            this.CMOODELO.Name = "CMOODELO";
-            this.CMOODELO.ReadOnly = true;
-            // 
-            // CCAPACIDAD
-            // 
-            this.CCAPACIDAD.HeaderText = "CAPACIDAD";
-            this.CCAPACIDAD.Name = "CCAPACIDAD";
-            this.CCAPACIDAD.ReadOnly = true;
-            // 
-            // CCOMBUSTIBLE
-            // 
-            this.CCOMBUSTIBLE.HeaderText = "COMBUSTIBLE";
-            this.CCOMBUSTIBLE.Name = "CCOMBUSTIBLE";
-            this.CCOMBUSTIBLE.ReadOnly = true;
-            // 
-            // CKMS
-            // 
-            this.CKMS.HeaderText = "KMS";
-            this.CKMS.Name = "CKMS";
-            this.CKMS.ReadOnly = true;
-            // 
-            // CDISPONIBILE
-            // 
-            this.CDISPONIBILE.HeaderText = "DISPONIBLE";
-            this.CDISPONIBILE.Name = "CDISPONIBILE";
-            this.CDISPONIBILE.ReadOnly = true;
-            // 
-            // CPRECIO
-            // 
-            this.CPRECIO.HeaderText = "PRECIO";
-            this.CPRECIO.Name = "CPRECIO";
-            this.CPRECIO.ReadOnly = true;
             // 
             // Form1
             // 
@@ -430,6 +431,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";

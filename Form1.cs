@@ -588,8 +588,8 @@ namespace Agencia_Autos
                     {
                         control = true;
 
-                        //////////////////////////////////////////////////////////////////////////////////////////////////////////
-                        VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
+                    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                    VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
                     VentanaAlquilar.tbDniCliente.Text = "32831554";
                     VentanaAlquilar.tbCuilCliente.Text = "20328315549";
                     VentanaAlquilar.tbDireccionCliente.Text = "Colon 432";
@@ -838,7 +838,7 @@ namespace Agencia_Autos
                         }
                     }
             }
-           catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
+           catch (ApplicationException) { /*MessageBox.Show(er.Message); */control = false; }
             catch (NullReferenceException er) { MessageBox.Show(er.Message); control = false; }
             catch (ArgumentNullException er) { MessageBox.Show(er.Message); control = false; }
         
