@@ -179,6 +179,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnFinalizar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AlquileresVigentes";
             this.Load += new System.EventHandler(this.AlquileresVigentes_Load);

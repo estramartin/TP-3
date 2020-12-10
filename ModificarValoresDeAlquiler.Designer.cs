@@ -114,6 +114,7 @@
             this.Controls.Add(this.tbModificarValorDeAlquiler);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAceptar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ModificarValoresDeAlquiler";
             this.Text = "ModificarValoresDeAlquiler";

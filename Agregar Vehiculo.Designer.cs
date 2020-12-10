@@ -440,6 +440,7 @@
             this.Controls.Add(this.gbDatosVehiculos);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCarcarImagenAuto);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Agregar_Vehiculo";
             this.Text = "Agregar_Vehiculo";

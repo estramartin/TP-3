@@ -70,6 +70,7 @@
             this.printArchivo = new System.Drawing.Printing.PrintDocument();
             this.pblogo = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGV1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pblogo)).BeginInit();
@@ -413,12 +414,22 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.Location = new System.Drawing.Point(21, 542);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(129, 26);
+            this.btnCerrarSesion.TabIndex = 24;
+            this.btnCerrarSesion.Text = "Cerrar Sesion";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1541, 569);
+            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.pblogo);
             this.Controls.Add(this.tbFiltro);
@@ -431,6 +442,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
@@ -493,6 +505,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CKMS;
         private System.Windows.Forms.DataGridViewTextBoxColumn CDISPONIBILE;
         private System.Windows.Forms.DataGridViewTextBoxColumn CPRECIO;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }
 
