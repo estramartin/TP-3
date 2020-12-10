@@ -594,19 +594,37 @@ namespace Agencia_Autos
                         control = true;
 
                     //////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
-                    VentanaAlquilar.tbDniCliente.Text = "32831554";
-                    VentanaAlquilar.tbCuilCliente.Text = "20328315549";
-                    VentanaAlquilar.tbDireccionCliente.Text = "Colon 432";
-                    VentanaAlquilar.tbTelefonoCliente.Text = "154234567";
-                    VentanaAlquilar.tbEstadoCivilCliente.Text = "Casado";
-                    VentanaAlquilar.tbNacionalidadCliente.Text = "Argentino";
-                    VentanaAlquilar.tbCarnetCliente.Text = "234234234";
-                    VentanaAlquilar.tbDiasDeAlquiler.Text = "2";
+                        VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
+                        VentanaAlquilar.tbDniCliente.Text = "32831554";
+                        VentanaAlquilar.tbCuilCliente.Text = "20328315549";
+                        VentanaAlquilar.tbDireccionCliente.Text = "Colon 432";
+                        VentanaAlquilar.tbTelefonoCliente.Text = "154234567";
+                        VentanaAlquilar.tbEstadoCivilCliente.Text = "Casado";
+                        VentanaAlquilar.tbNacionalidadCliente.Text = "Argentino";
+                        VentanaAlquilar.tbCarnetCliente.Text = "234234234";
+                        VentanaAlquilar.tbDiasDeAlquiler.Text = "2";
 
+                        VentanaAlquilar.tbNombreAcompañante1.Text = "Maria Curie";
+                        VentanaAlquilar.tbDNIAcompañante1.Text = "32831554";
+                        VentanaAlquilar.tbCuilAcompañante1.Text = "20328315549";
+                        VentanaAlquilar.tbDirAcompañante1.Text = "La Paz 5432";
+                        VentanaAlquilar.tbTelAcompañante1.Text = "154987432";
+                        VentanaAlquilar.tbEstadoCivilAcompañante1.Text = "Casada";
+                        VentanaAlquilar.tbNacAcompañante1.Text = "Argentina";
+                        VentanaAlquilar.tbCarnetAcompañante1.Text = "12873285";
+                        
+                        VentanaAlquilar.tbNombreAcompañante2.Text = "Ricardo Mollo";
+                        VentanaAlquilar.tbDNIAcompañante2.Text = "32831554";
+                        VentanaAlquilar.tbCuilAcompañante2.Text = "20328315549";
+                        VentanaAlquilar.tbDirAcompañante2.Text = "Francia 1267";
+                        VentanaAlquilar.tbTelAcompañante2.Text = "154357698";
+                        VentanaAlquilar.tbEstadoCivilAcompañante2.Text = "Soltero";
+                        VentanaAlquilar.tbNacAcompañante2.Text = "Argentino";
+                        VentanaAlquilar.tbCarnetAcompañante2.Text = "234234234";
+                        
 
-                    //////////////////////////////////////////////////////////////////////////////////////////////////////////
-                    VentanaAlquilar.btnSalir.Location = new Point(377, 374);
+                        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        VentanaAlquilar.btnSalir.Location = new Point(377, 374);
                     VentanaAlquilar.label9.Show();
                     VentanaAlquilar.label11.Text = SinChof[DGV1.CurrentRow.Index].GetVehiculo();
                     if (SinChof[DGV1.CurrentRow.Index].Disponible == false)
@@ -764,6 +782,17 @@ namespace Agencia_Autos
                             VentanaAlquilar.comboBox1.Hide();
 
                             VentanaAlquilar.pictureBox1.Image = Image.FromFile(ruta);
+                            //////////////////////////////////////////////////////////////////////////////////////////////////////////
+                            VentanaAlquilar.tbNombreCliente.Text = "Carlos Gardel";
+                            VentanaAlquilar.tbDniCliente.Text = "32831554";
+                            VentanaAlquilar.tbCuilCliente.Text = "20328315549";
+                            VentanaAlquilar.tbDireccionCliente.Text = "Colon 432";
+                            VentanaAlquilar.tbTelefonoCliente.Text = "154234567";
+                            VentanaAlquilar.tbEstadoCivilCliente.Text = "Casado";
+                            VentanaAlquilar.tbNacionalidadCliente.Text = "Argentino";
+                            VentanaAlquilar.tbCarnetCliente.Text = "234234234";
+                            
+                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                             if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
                             {
