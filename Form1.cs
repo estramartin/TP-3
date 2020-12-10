@@ -579,6 +579,7 @@ namespace Agencia_Autos
            
             Ticket comprobante = new Ticket();
             bool control = false;
+            bool control2 = false;
 
               try
                 {
@@ -627,13 +628,7 @@ namespace Agencia_Autos
                     VentanaAlquilar.comboBox1.Show();
                     if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
                     {
-
-
-
-
-
-
-
+                            control2 = true;
                             try
                             {
                                 string nombre = VentanaAlquilar.tbNombreCliente.Text;
@@ -772,6 +767,7 @@ namespace Agencia_Autos
 
                             if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
                             {
+                                control2 = true;
                                 string nombre = VentanaAlquilar.tbNombreCliente.Text;
                                 int Dni = Convert.ToInt32(VentanaAlquilar.tbDniCliente.Text);
                                 long cuil = Convert.ToInt64(VentanaAlquilar.tbCuilCliente.Text);
@@ -812,7 +808,7 @@ namespace Agencia_Autos
                 }
 
 
-                    if (control == true )
+                if (control == true && control2 == true)
                     {
 
                         if (Comprobante == null)
