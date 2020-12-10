@@ -1640,5 +1640,59 @@ namespace Agencia_Autos
 
            
         }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            IngresoUsuario ingresarUsuario = new IngresoUsuario();
+
+           
+            bool autorizar = false;
+            while (autorizar == false)
+            {
+
+                DialogResult dr = ingresarUsuario.ShowDialog();
+                if (dr == DialogResult.OK)
+                {
+
+                    string nombre = ingresarUsuario.tbNombreUsuario.Text;
+                    string clave = ingresarUsuario.tbClave.Text;
+                    bool supervisor = ingresarUsuario.cbSupervisor.Checked;
+                    autorizar = administracion.GetLogeo(nombre, clave, supervisor);
+                    if (supervisor == true)
+                    {
+
+                        menuStrip1.Show();
+
+                    }
+                    else { menuStrip1.Hide(); }
+
+                    if (autorizar == false)
+                    {
+
+                        ingresarUsuario.Text = "Error al intentar lograr";
+
+                    }
+
+                }
+                else if (dr == DialogResult.Retry)
+                {
+                    Application.Exit();
+                    autorizar = true;
+
+                }
+                else
+                {
+
+                    Application.Exit();
+                    autorizar = true;
+
+                }
+               
+
+            }
+
+            this.Show();
+        }
     }
 }
