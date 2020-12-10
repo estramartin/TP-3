@@ -62,6 +62,14 @@ namespace Agencia_Autos
                     CONTROLCUIT[8] = Convert.ToInt32(CUIT[8]) * 3;
                     CONTROLCUIT[9] = Convert.ToInt32(CUIT[9]) * 2;
 
+                    string documento = cuit.Substring(2, 8);
+
+                    if (dni.ToString() != documento) {
+
+                        throw new ApplicationException("Documento o Cuit mal ingresado");
+                    }
+
+
                     foreach (int C in CONTROLCUIT)
                     {
 

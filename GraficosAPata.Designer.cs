@@ -86,6 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -95,6 +96,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GraficosAPata";
             this.Text = "GraficosAPata";
+            this.Load += new System.EventHandler(this.GraficosAPata_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.GraficosAPata_Paint);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -350,7 +350,7 @@
             this.gbConductor1.Controls.Add(this.label23);
             this.gbConductor1.Controls.Add(this.label24);
             this.gbConductor1.Controls.Add(this.label25);
-            this.gbConductor1.Location = new System.Drawing.Point(423, 432);
+            this.gbConductor1.Location = new System.Drawing.Point(401, 342);
             this.gbConductor1.Name = "gbConductor1";
             this.gbConductor1.Size = new System.Drawing.Size(279, 501);
             this.gbConductor1.TabIndex = 29;
@@ -542,7 +542,7 @@
             this.gbConductor2.Controls.Add(this.label28);
             this.gbConductor2.Controls.Add(this.label29);
             this.gbConductor2.Controls.Add(this.label30);
-            this.gbConductor2.Location = new System.Drawing.Point(721, 432);
+            this.gbConductor2.Location = new System.Drawing.Point(715, 342);
             this.gbConductor2.Name = "gbConductor2";
             this.gbConductor2.Size = new System.Drawing.Size(300, 501);
             this.gbConductor2.TabIndex = 30;
@@ -788,7 +788,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 952);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(1112, 911);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.gbConductor2);
             this.Controls.Add(this.gbConductor1);
@@ -799,7 +800,7 @@
             this.Controls.Add(this.gbCliente);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GenerarAlquiler";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "GenerarAlquiler";
             this.Load += new System.EventHandler(this.GenerarAlquiler_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

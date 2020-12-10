@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Agencia_Autos
 {
@@ -101,7 +102,11 @@ namespace Agencia_Autos
         private void btnCargarFotoTitular_Click(object sender, EventArgs e)
         {
             openFileFotos.ShowDialog();
-            pbTitular.Image = Image.FromFile(openFileFotos.FileName);
+            if (openFileFotos.FileName == "openFileDialog1") { throw new FileNotFoundException("Cancelado por el usuario"); }
+            else
+            {
+                pbTitular.Image = Image.FromFile(openFileFotos.FileName);
+            }
             pathTitular = openFileFotos.FileName;
         }
     }

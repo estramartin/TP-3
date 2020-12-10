@@ -23,6 +23,11 @@ namespace Agencia_Autos
 
         }
 
+        private void GraficosAPata_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void GraficosAPata_Paint(object sender, PaintEventArgs e)
         {
             // marco

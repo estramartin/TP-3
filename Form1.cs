@@ -64,7 +64,6 @@ namespace Agencia_Autos
             }
 
             ActualizarListboxs();
-           
 
         }
 
@@ -623,10 +622,10 @@ namespace Agencia_Autos
                     VentanaAlquilar.comboBox1.Show();
                     if (VentanaAlquilar.ShowDialog() == DialogResult.OK)
                     {
-                       
 
 
-                       
+
+
 
 
 
@@ -722,6 +721,7 @@ namespace Agencia_Autos
 
                             }
                             catch (FormatException er) { MessageBox.Show(er.Message); control = false; }
+                            catch (FileNotFoundException er) { MessageBox.Show(er.Message); control = false; }
                             catch (ArgumentOutOfRangeException er) { MessageBox.Show(er.Message); control = false; }
                             catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
                         }
@@ -793,6 +793,7 @@ namespace Agencia_Autos
 
                         }
                         catch (FormatException er) { MessageBox.Show(er.Message); control = false; }
+                        catch (FileNotFoundException er) { MessageBox.Show(er.Message); control = false; }
                         catch (ArgumentOutOfRangeException er) { MessageBox.Show(er.Message); control = false; }
                         catch (ApplicationException er) { MessageBox.Show(er.Message); control = false; }
                     }
@@ -841,8 +842,9 @@ namespace Agencia_Autos
            catch (ApplicationException) { /*MessageBox.Show(er.Message); */control = false; }
             catch (NullReferenceException er) { MessageBox.Show(er.Message); control = false; }
             catch (ArgumentNullException er) { MessageBox.Show(er.Message); control = false; }
-        
-            
+            catch (FileNotFoundException er) { MessageBox.Show(er.Message); control = false; }
+
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
