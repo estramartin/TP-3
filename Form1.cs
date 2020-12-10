@@ -69,7 +69,12 @@ namespace Agencia_Autos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
+            Splash vSplash = new Splash(3); // 3 segundos
+            vSplash.ShowDialog();
+            vSplash.Dispose();
+
+
             pblogo.Image = Image.FromFile( administracion.GetEmpresa().Logo);
             IngresoUsuario ingresarUsuario = new IngresoUsuario();
 
@@ -719,6 +724,10 @@ namespace Agencia_Autos
 
                                 ActualizarListboxs();
 
+
+
+
+
                             }
                             catch (FormatException er) { MessageBox.Show(er.Message); control = false; }
                             catch (FileNotFoundException er) { MessageBox.Show(er.Message); control = false; }
@@ -789,6 +798,9 @@ namespace Agencia_Autos
                                 ActualizarListboxs();
 
 
+
+
+
                             }
 
                         }
@@ -800,7 +812,7 @@ namespace Agencia_Autos
                 }
 
 
-                    if (control == true)
+                    if (control == true )
                     {
 
                         if (Comprobante == null)
@@ -818,10 +830,7 @@ namespace Agencia_Autos
 
                             if (comprobante.ShowDialog() == DialogResult.OK)
                             {
-
-                                printComprobante.Print();
-
-
+                            printComprobante.Print();
                             }
                         }
 
@@ -846,6 +855,7 @@ namespace Agencia_Autos
 
 
         }
+
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
